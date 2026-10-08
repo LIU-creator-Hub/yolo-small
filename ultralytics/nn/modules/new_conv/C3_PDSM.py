@@ -1,15 +1,14 @@
 import torch
-import torch.nn as nn
-from.PDSM import *
+from torch import nn
 
+from .PDSM import *
 
 # 确保这里导入了你写的 PDSM
 # from ultralytics.nn.modules.Addmodules.PDSM import PDSM
 
+
 class C3_PDSM(nn.Module):
-    """
-    原创极限轻量主干模块：C3_PDSM
-    结合 CSP 结构与 PDSM (部分深度可分离混洗)，专门用于替换沉重的 C3k2，实现断崖式降参。
+    """原创极限轻量主干模块：C3_PDSM 结合 CSP 结构与 PDSM (部分深度可分离混洗)，专门用于替换沉重的 C3k2，实现断崖式降参。.
     """
 
     def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
