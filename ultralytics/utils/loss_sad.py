@@ -64,12 +64,7 @@ class SADBboxLoss(BboxLoss):
         # --- new term 2: normalized Wasserstein distance (small / thin defects) ---
         pcx, pcy = (pb[:, 0] + pb[:, 2]) * 0.5, (pb[:, 1] + pb[:, 3]) * 0.5
         tcx, tcy = (tb[:, 0] + tb[:, 2]) * 0.5, (tb[:, 1] + tb[:, 3]) * 0.5
-        d2 = (
-            (pcx - tcx) ** 2
-            + (pcy - tcy) ** 2
-            + (pw * 0.5 - tw * 0.5) ** 2
-            + (ph * 0.5 - th * 0.5) ** 2
-        )
+        d2 = (pcx - tcx) ** 2 + (pcy - tcy) ** 2 + (pw * 0.5 - tw * 0.5) ** 2 + (ph * 0.5 - th * 0.5) ** 2
         nwd = torch.exp(-(d2 / self.nwd_c).clamp(max=30.0))
         loss_nwd = ((1.0 - nwd) * weight).sum() / target_scores_sum
 
@@ -93,7 +88,5 @@ class SADTrainer(DetectionTrainer):
 
     def get_model(self, cfg=None, weights=None, verbose=True):
         model = super().get_model(cfg, weights, verbose)
-        model.criterion = SADDetectionLoss(
-            model, shape_gain=self.shape_gain, nwd_gain=self.nwd_gain, nwd_c=self.nwd_c
-        )
+        model.criterion = SADDetectionLoss(model, shape_gain=self.shape_gain, nwd_gain=self.nwd_gain, nwd_c=self.nwd_c)
         return model
