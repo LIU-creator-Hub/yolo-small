@@ -1,11 +1,9 @@
 import torch
-import torch.nn as nn
+from torch import nn
+
 
 class PDSM(nn.Module):
-    """
-    部分深度可分离混洗模块 (Partial Depthwise Shuffle Module)
-    仅对部分通道做深度可分离卷积，其余直连，最后通道混洗。
-    轻量高效，适合小数据集防过拟合。
+    """部分深度可分离混洗模块 (Partial Depthwise Shuffle Module) 仅对部分通道做深度可分离卷积，其余直连，最后通道混洗。 轻量高效，适合小数据集防过拟合。.
 
     参数:
         c1: 输入通道（框架自动传入）
@@ -13,12 +11,13 @@ class PDSM(nn.Module):
         shortcut: 是否残差连接（c1 == c2 时生效）
         ratio: 参与深度卷积的通道比例（0~1），推荐 0.5
     """
+
     def __init__(self, c1, c2, shortcut=True, ratio=0.5):
         super().__init__()
         c1 = int(c1)
         c2 = int(c2)
         ratio = float(ratio)
-        self.cp = max(1, int(c1 * ratio))   # 参与卷积的通道数
+        self.cp = max(1, int(c1 * ratio))  # 参与卷积的通道数
         self.c_rest = c1 - self.cp
         self.shortcut = shortcut and c1 == c2
 
@@ -28,19 +27,15 @@ class PDSM(nn.Module):
             nn.BatchNorm2d(self.cp),
             nn.Conv2d(self.cp, self.cp, 1, bias=False),
             nn.BatchNorm2d(self.cp),
-            nn.SiLU()
+            nn.SiLU(),
         )
         # 1x1 投影到输出通道 c2
-        self.project = nn.Sequential(
-            nn.Conv2d(c1, c2, 1, bias=False),
-            nn.BatchNorm2d(c2),
-            nn.SiLU()
-        )
+        self.project = nn.Sequential(nn.Conv2d(c1, c2, 1, bias=False), nn.BatchNorm2d(c2), nn.SiLU())
 
     def forward(self, x):
         # 分割通道
-        x_p = x[:, :self.cp, :, :]
-        x_id = x[:, self.cp:, :, :]
+        x_p = x[:, : self.cp, :, :]
+        x_id = x[:, self.cp :, :, :]
         # 深度可分离处理
         out_p = self.dwconv(x_p)
         # 拼接
