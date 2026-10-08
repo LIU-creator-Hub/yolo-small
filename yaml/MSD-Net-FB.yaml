@@ -1,0 +1,36 @@
+# MSD-Net-FB (Full Build): every backbone block is also a new MSD operator.
+# Only the two stem convs keep YOLO11n shapes, so yolo11n.pt can only transfer
+# the stem; train from scratch (or distil from a YOLO11n teacher).
+nc: 6
+scales:
+  n: [0.50, 0.25, 1024]
+
+backbone:
+  - [-1, 1, Conv, [64, 3, 2]]            # 0  P1/2
+  - [-1, 1, Conv, [128, 3, 2]]           # 1  P2/4
+  - [-1, 2, MBlock, [256]]               # 2  (was C3k2)
+  - [-1, 1, HPD, [256, 3, 2]]            # 3  (was Conv) P3/8
+  - [-1, 2, MBlock, [512]]               # 4  lateral P3
+  - [-1, 1, HPD, [512, 3, 2]]            # 5  (was Conv) P4/16
+  - [-1, 2, MBlock, [512]]               # 6  lateral P4
+  - [-1, 1, HPD, [1024, 3, 2]]           # 7  (was Conv) P5/32
+  - [-1, 2, MBlock, [1024]]              # 8
+  - [-1, 1, SPPF, [1024, 5]]             # 9
+  - [-1, 2, MBlock, [1024]]              # 10 (was C2PSA) lateral P5
+
+head:
+  # ---- top-down pathway: GAF gradient-aware fusion ----
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]   # 11
+  - [[-1, 6], 1, Concat, [1]]                    # 12  256+128
+  - [-1, 1, GAF, [512]]                          # 13  -> P4 fused (128)
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]   # 14
+  - [[-1, 4], 1, Concat, [1]]                    # 15  128+128
+  - [-1, 1, MBlock, [256]]                       # 16  -> P3 out (64)
+  # ---- bottom-up pathway: HPD high-frequency preserving downsample ----
+  - [-1, 1, HPD, [256, 3, 2]]                    # 17  P3 -> P4
+  - [[-1, 13], 1, Concat, [1]]                   # 18  64+128
+  - [-1, 1, GAF, [512]]                          # 19  -> P4 out (128)
+  - [-1, 1, HPD, [512, 3, 2]]                    # 20  P4 -> P5
+  - [[-1, 10], 1, Concat, [1]]                   # 21  128+256
+  - [-1, 1, GAF, [1024]]                         # 22  -> P5 out (256)
+  - [[16, 19, 22], 1, LiteDetect, [nc]]          # 23  Detect(P3,P4,P5)

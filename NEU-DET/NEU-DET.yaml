@@ -1,0 +1,16 @@
+# G:\deeplearning\ultralytics-8.3.163\NEU-data11\NEU-DET.yaml
+# 1. 训练集和验证集的绝对路径（Windows系统用\，或用/转义）
+train: G:\deeplearning\YOLO-small\NEU-DET\images\train
+val: G:\deeplearning\YOLO-small\NEU-DET\images\val
+
+# 2. 类别数量（NEU-DET是6类）
+nc: 6
+
+# 3. 类别名称（必须与labels.txt完全一致，顺序对应类别索引0-5）
+names:
+  0: crazing
+  1: inclusion
+  2: patches
+  3: pitted_surface
+  4: rolled-in_scale
+  5: scratches

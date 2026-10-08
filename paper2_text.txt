@@ -1,0 +1,626 @@
+
+
+========== PAGE 1 ==========
+SPL-YOLO: A Lightweight Multiscale Spatial–Frequency
+Collaborative Network for Multi-Morphology Steel Surface Defect
+Detection⋆
+Jinxia Rena, Yang Liua,∗ and Donghua Gaoa
+aSchool of Electrical Engineering and Automation, Jiangxi University of Science and Technology, Ganzhou, 341000, Jiangxi, China
+ARTICLE INFO
+Keywords:
+steel surface defect detection
+SPL-YOLO
+SDAConv
+P_SMD
+LYMA
+ABSTRACT
+Steel surface defect detection is a critical component of quality control in intelligent manufacturing,
+yet it faces two fundamental challenges. First, defect morphologies are extremely heterogeneous:
+high-frequencyweakcracksandlow-frequencylarge-areapatchesexhibitentangledspatial–frequency
+characteristics, causing subtle defects to be overwhelmed by background texture. Second, industrial
+edgedevicesimposestringentcomputationalconstraints.Featureconfusionandweakenedgeometric
+perceptionfrequentlyarisewhenlightweightmodelsreducefeaturedimensionality,makingitdifficult
+to balance the detection accuracy of non-rigid defects against deployment efficiency.
+Toaddresstheselimitations,thispaperproposesSPL-YOLO,alightweighthigh-accuracynetwork
+based on multiscale spatial–frequency collaboration. It follows a multilevel strategy of frequency-
+domain decoupling, geometric modulation, and morphology-aware focusing. A spectral decoupling
+anomaly-aware convolution (SDAConv) is first introduced at the fine-grained P3 feature level. An
+average-poolingbackgroundsmootherextractshigh-frequencyresidualsandexplicitlystrengthensthe
+edge topology ofsmall defects. A partial spatialmorphological modulation module (P_SMD) isthen
+deployed at the P3, P4, and P5 levels. Its 50% channel-splitting sparse deformation strategy, together
+with spatial morphological gating, dynamically fits non-rigid defect contours at low computational
+cost. Finally, layer-wise morphological attention (LYMA) is embedded at all three detection levels.
+Three parallel paths based on strip, dilated, and large-kernel depthwise convolutions adaptively
+enhance responses to representative defect morphologies.
+On NEU-DET, SPL-YOLO achieves 79.0% mAP@0.5 with only 2.01 million parameters and
+5.2 GFLOPs. Compared with YOLOv11n, it reduces the parameter count by 30.9% and computation
+by 32.5%, while improving mAP@0.5 by 2.3 percentage points and maintaining 76.07 FPS. Cross-
+scenario experiments on GC10-DET yield 69.3% mAP@0.5, demonstrating strong generalization.
+The proposed design provides an efficient route for optimizing industrial defect detectors under
+resource constraints.
+1. Introduction
+Withtherapiddevelopmentofindustrialautomationand
+intelligentmanufacturing,machine-vision-basedsurfacede-
+fect detection has become essential for quality control and
+yield improvement in the steel industry[1,2]. During hot and
+cold rolling, coupled factors such as rolling stress, pro-
+cessfluctuations,andenvironmentalimpuritiescanproduce
+crazing, scratches, inclusions, patches, pitted surfaces, and
+rolled-in scale. These defects exhibit strong morphological
+heterogeneityandinterclasssimilarity.Someareweakhigh-
+frequency cracks only a few pixels wide, whereas others are
+low-frequency patches occupying nearly half of an image.
+Their visual signatures are often obscured by metallic color
+and rolling texture, presenting a major challenge for auto-
+mated inspection[3,4].
+Single-stage detectors represented by the YOLO family
+have been widely adopted for industrial defect detection
+⋆
+ThisworkwassupportedbytheNationalNaturalScienceFoundation
+of China (Grant No. 71361014) and the Jiangxi Provincial Key Labora-
+tory of Multidimensional Intelligent Perception and Control (Grant No.
+2024SSY03161).
+∗Corresponding author.
+2373254382@qq.com(J. Ren);2974643305@qq.com(Y. Liu)
+ORCID(s):
+becauseoftheirfavorableaccuracy–speedtrade-off [5,6].Re-
+cent studies have investigated multiscale feature fusion, at-
+tentionenhancement,deformableconvolution,andlightweight
+architectures.Zhouetal. [7] proposedMPA-YOLO,combin-
+ing large-kernel depthwise convolution, coordinate atten-
+tion,andpartialself-attention.Maetal. [8] introducedlinear
+attention and a selective feature pyramid in ELA-YOLO
+to reduce complexity and latency. Gao et al.[9] combined
+a Mamba state-space model, large-kernel convolution, and
+hypergraph semantic modeling in CBH-YOLO. Huang et
+al.[10] addressed feature misalignment and shallow-detail
+disruption through multilevel alignment and cross-layer
+feature redistribution.
+Despite this progress, two shared limitations remain in
+practical strip-steel inspection. First, spatial and frequency-
+domain features are strongly coupled. Homogeneous spa-
+tial convolutions at every scale cannot accommodate the
+markedly different distributions of fine cracks and large
+patches. General-purpose convolution may suppress weak
+high-frequency detail, while unconstrained dynamic sam-
+pling may damage fragile crack edges. Second, accurate
+deformation modeling conflicts with stringent efficiency
+requirements. Aggressive channel pruning and depthwise
+separable convolution weaken geometric representation,
+J. Ren et al.:Preprint submitted to ElsevierPage 1 of 9
+
+========== PAGE 2 ==========
+SPL-YOLO for steel surface defect detection
+whereasfull-channeldeformableconvolutionorglobalself-
+attention substantially increases computation. Moreover,
+generic attention lacks morphology-specific priors and may
+mix heterogeneous features during dimensionality reduc-
+tion.
+Toaddresstheseissues,SPL-YOLOconstructsdifferen-
+tiated enhancement paths at the P3, P4, and P5 scales. Its
+main contributions are as follows:
+1. SDAConv forms an asymmetric two-branch structure
+comprising a global semantic baseline and high-
+frequencyresidualenhancement.Itexplicitlystrength-
+enssmall-defectedgeswithnegligibleadditionalcom-
+putation.
+2. P_SMD applies deformable sampling to only 50%
+of the channels and constrains the offset distribution
+through spatial morphological gating, retaining non-
+rigid geometric modeling while removing substantial
+redundancy.
+3. LYMA uses parallel strip, dilated, and large-kernel
+depthwise convolution paths to encode morphology
+priors and adaptively focus on heterogeneous defects
+at all three detection levels.
+ExperimentsonNEU-DETshowthatSPL-YOLOachieves
+a superior accuracy–efficiency balance, while evaluation
+on GC10-DET confirms that the improvements generalize
+across industrial scenarios.
+2. YOLOv11 Object Detection Model
+YOLOv11 is a representative real-time single-stage de-
+tector[11]. Its topology consists of a backbone, neck, and
+decoupled detection head, as illustrated in Fig. 1.
+Figure 1:Architecture of the YOLOv11 object detection
+model.
+The backbone is built on an improved cross-stage par-
+tial architecture and integrates C3k2 and C2PSA mod-
+ules.Cross-stageconnectionsreduceredundantcomputation
+while strengthening deep channel and spatial representa-
+tions. At the end of the backbone, spatial pyramid pooling–
+fast(SPPF)aggregatesmultiscaleglobalcontextandoutputs
+P3,P4,andP5featuremapsatdownsamplingratiosof8,16,
+and 32, respectively.
+The neck combines a feature pyramid with a path ag-
+gregationnetwork [12].Atop-downbilinearupsamplingpath
+propagates strong high-level semantics, while a bottom-up
+convolutional path transfers high-resolution detail. Cross-
+level enhancement and skip connections alleviate spatial-
+detail loss in deep features. Finally, an anchor-free decou-
+pled head separates classification and bounding-box regres-
+sion[13]. It predicts center offsets and box scales at P3–
+P5 and uses distribution focal loss for robust multiscale
+regression.
+3. Proposed SPL-YOLO Model
+SPL-YOLO retains the backbone–neck–head organiza-
+tion of YOLOv11n while adopting a coordinated strat-
+egy of frequency decoupling, geometric modulation, and
+morphology-aware focusing. As shown in Fig. 2, SDAConv
+strengthens weak high-frequency responses at P3; P_SMD
+balances geometric perception and computation at P3–P5;
+and LYMA supplies morphology-specific attention at all
+threedetectionlevels.Thesecomponentsactatcomplemen-
+tarystages,reducingbothparametersandcomputationwhile
+improving accuracy.
+Figure 2:Overall architecture of SPL-YOLO.
+3.1. Spectral Decoupling Anomaly-Aware
+Convolution
+3.1.1. Motivation
+Steel surface images exhibit a partially separable fre-
+quency distribution. Defect boundaries are concentrated
+J. Ren et al.:Preprint submitted to ElsevierPage 2 of 9
+
+========== PAGE 3 ==========
+SPL-YOLO for steel surface defect detection
+mainly in high-frequency components, whereas base color
+androllingtexturearedominatedbylow-frequencyinforma-
+tion[14,15].Standardconvolutionprocessesbothcomponents
+indiscriminately, so weak cracks and shallow scratches
+can be submerged by background noise. Conversely, hard
+frequency partitioning can remove the semantic foundation
+requiredforclassificationandlocalization.SDAConvthere-
+fore uses an asymmetric two-branch design that preserves
+global semantics while explicitly enhancing high-frequency
+anomalies.
+3.1.2. Structure and operation
+Figure3showsSDAConv.Givenashallowhigh-resolution
+featuremap𝑋∈ℝ 𝐶×𝐻×𝑊 ,a𝑘×𝑘average-poolingoperator
+actsasatwo-dimensionallow-passfilter.Thelow-frequency
+background feature is
+𝑋bg(𝑝0) = 1
+𝑘2
+𝑘∑
+𝑖=1
+𝑘∑
+𝑗=1
+𝑋(𝑝0 +𝑝 𝑖,𝑗)(1)
+where𝑝 0 is the center location and𝑝𝑖,𝑗 is a relative neigh-
+borhoodoffset.Aresidualhigh-passoperatorthenproduces
+𝑋hf =𝑋−𝑋 bg (2)
+Figure 3:Structure of SDAConv.
+Because average pooling has unit gain at the direct-
+current component, subtraction cancels the zero-frequency
+response and increasingly emphasizes higher spatial fre-
+quencies. The global branch applies a3 × 3convolution,
+batch normalization (BN), and SiLU activation to𝑋, yield-
+ing𝐹 base. The anomaly branch applies the same transfor-
+mation to𝑋hf, yielding𝐹high. Their concatenation is recali-
+brated by a pointwise convolution:
+𝑌SDA =𝜓 1×1
+([𝐹base, 𝐹high]) (3)
+Thus, high-frequency details are explicitly enhanced
+without discarding low-frequency semantics or requiring an
+expensive Fourier transform.
+3.2. Partial Spatial Morphological Modulation
+3.2.1. Motivation
+Large patches and rolled-in scale have irregular non-
+rigid boundaries that cannot be accurately covered by a
+fixed rectangular receptive field. Full-channel deformable
+convolution can adapt its sampling positions, but its offset
+computationiscostly.P_SMDresolvesthisconflictthrough
+sparse deformation: only half of the channels are dynami-
+cally sampled, while a lightweight spatial gate suppresses
+offsets in irrelevant background regions.
+3.2.2. Forward modulation
+As illustrated in Fig. 4,𝑋∈ℝ 𝐶×𝐻×𝑊 is split equally
+intoanidentitybranch𝑋 id ∈ℝ 𝐶∕2×𝐻×𝑊 andadeformation
+branch𝑋 def ∈ℝ 𝐶∕2×𝐻×𝑊 . The identity branch preserves
+dense semantics, whereas the deformation branch models
+irregular contours.
+Figure 4:Structure of the P_SMD module.
+An offset-mask convolution predicts offsetsΔ𝑝and an
+initial modulation maskΔ𝑚0:
+[Δ𝑝,Δ𝑚 0] =𝜓 of fset−mask (𝑋def )(4)
+Spatialmorphologicalgatingisimplementedwithdepth-
+wise and pointwise convolutions:
+𝑀smg =𝜎 (PWConv(DWConv(𝑋def ))) (5)
+where𝜎denotes the sigmoid function. The final mask is
+Δ𝑚= Δ𝑚 0 ⊙ 𝑀smg (6)
+For a location𝑝0, deformable sampling is expressed as
+𝐹def (𝑝0) =
+𝐾∑
+𝑘=1
+𝑤𝑘𝑋def (𝑝0 +𝑝 𝑘 + Δ𝑝𝑘)Δ𝑚𝑘 (7)
+J. Ren et al.:Preprint submitted to ElsevierPage 3 of 9
+
+========== PAGE 4 ==========
+SPL-YOLO for steel surface defect detection
+where𝑤 𝑘 and𝑝 𝑘 aretheweightandregular-gridpositionof
+the𝑘th sampling point. The output is
+𝑌P_SMD =𝜙 1×1
+([𝑋id, 𝐹def ]) (8)
+Compared with full-channel deformable convolution,
+this design reduces dynamic-offset computation and param-
+eter redundancy by approximately 50%, enabling deploy-
+ment at all three feature scales.
+3.3. Layer-Wise Morphological Attention
+3.3.1. Morphology-specific motivation
+Steel defects are strongly anisotropic. Square receptive
+fields and generic channel/spatial attention can incorporate
+excessive background for thin scratches and cracks, yet
+remain too limited to cover large irregular patches[16–18].
+LYMAinsteadembedsindustrialmorphologypriorsthrough
+three parallel paths and is deployed at P3, P4, and P5.
+3.3.2. Topology and information flow
+For𝑋∈ℝ 𝐶×𝐻×𝑊 , the protected bottleneck width is
+𝐶mid = max (8,⌊𝐶∕𝑟⌋ ) (9)
+where the reduction ratio is𝑟= 16. The lower bound
+prevents an excessively narrow attention branch in deep
+layers.
+Figure 5:Structure of the LYMA module.
+ThethreepathsshowninFig.5aredesignedforcomple-
+mentarymorphologies.Thestrip-convolutionpathcascades
+1 × 3and3 × 1convolutions to preserve the continuity of
+scratches and thin cracks. The dilated path uses a3 × 3
+convolution with dilation and padding equal to 2, yielding
+an effective5 × 5receptive field for discrete medium-scale
+defects. The large-kernel path applies a5 × 5depthwise
+convolution followed by a1 × 1pointwise convolution to
+aggregate large diffuse defects efficiently. Their outputs are
+𝐹strip =𝜓 3×1
+(BN(𝜙1×3(𝑋))) (10)
+𝐹dilated =𝜑 3×3,𝑑=2(𝑋)(11)
+𝐹large =𝜔 1×1
+(BN(𝜔5×5,𝑔=𝐶 (𝑋))) (12)
+Equal-weightaggregationpreventsagradient-dominantbranch
+from suppressing the other paths. The spatial attention map
+is
+𝐴=𝜎 (𝑊1×1(𝐹strip +𝐹 dilated +𝐹 large)) (13)
+and the final output is
+𝑌=
+{
+𝑋 ⊙ 𝐴+𝑋residual enabled
+𝑋 ⊙ 𝐴otherwise (14)
+4. Experiments and Analysis
+4.1. Experimental environment
+All experiments were conducted in the environment
+summarized in Table 1.
+Table 1
+Experimental environment.
+Item Configuration
+Operating system Windows 11
+CPU Intel Core i5-14600KF
+Memory 16 GB
+GPU NVIDIA RTX 5060 Ti (16 GB)
+Framework PyTorch 2.5.0
+Ultralytics YOLO 8.3.163
+Acceleration library CUDA 12.8
+4.2. Datasets
+The main experiments use the public NEU-DET steel
+surface defect dataset[19]. It contains six classes—crazing,
+inclusion,patches,pittedsurface,rolled-inscale,andscratches—
+with 300 grayscale images per class and 1,800 images in
+total. Each image has a resolution of200 × 200pixels.
+Representative samples are shown in Fig. 6. The data
+were randomly divided at an 8:2 ratio into 1,440 training
+images (240 per class) and 360 validation images (60 per
+class). Random flipping and color jitter were applied during
+training.
+(a) Crazing (b) Inclusion (c) Patches
+(d) Pitted surface (e) Rolled-in scale (f) Scratches
+Figure 6:Representative samples from the NEU-DET dataset.
+J. Ren et al.:Preprint submitted to ElsevierPage 4 of 9
+
+========== PAGE 5 ==========
+SPL-YOLO for steel surface defect detection
+GeneralizationisfurtherevaluatedonGC10-DET,which
+contains ten metal-surface defect categories collected under
+factory conditions and exhibits larger scale variation, more
+complex textures, and stronger illumination changes.
+4.3. Evaluation metrics
+Theevaluationusesprecision𝑃,recall𝑅,meanaverage
+precision(mAP),parametercount,GFLOPs,andframesper
+second (FPS):
+𝑃= 𝑇 𝑃
+𝑇 𝑃+𝐹 𝑃 (15)
+𝑅= 𝑇 𝑃
+𝑇 𝑃+𝐹 𝑁 (16)
+mAP = 1
+𝐶
+𝐶∑
+𝑖=1
+AP𝑖 (17)
+where𝑇 𝑃,𝐹 𝑃, and𝐹 𝑁denote true positives, false posi-
+tives, and false negatives, respectively, and𝐶is the number
+of classes. The primary accuracy metric is mAP at an
+intersection-over-unionthresholdof0.5,denotedmAP@0.5.
+ParametersandGFLOPsmeasurestorageandcomputational
+demand,whileFPSmeasurespracticalinferencethroughput
+under the same hardware and software conditions.
+4.4. Comparison of attention mechanisms
+LYMA was compared with coordinate attention (CA),
+contextanchorattention(CAA),globalattentionmechanism
+(GAM), efficient channel attention (ECA), and convolu-
+tional block attention module (CBAM). Each module was
+insertedatthesamenetworklocationsandtrainedwithiden-
+tical hyperparameters. Table 2 shows that LYMA achieves
+the best mAP@0.5 and recall.
+CAA reduces mAP@0.5 to 76.2%, indicating that in-
+appropriate contextual aggregation can damage weak high-
+frequency structures. GAM improves recall but raises com-
+putation by approximately 16.9%. CBAM reaches 78.4%
+mAP@0.5withlittleextracomputation,butitsrigidpooling
+limits representation of strongly anisotropic defects. LYMA
+obtains 79.0% mAP@0.5 and improves recall by 7.5 per-
+centage points over the baseline, while retaining real-time
+performance.
+Grad-CAM visualizations in Fig. 7 provide qualitative
+evidence. Conventional mechanisms exhibit false boundary
+activation, fragmented hotspots, or diffuse background re-
+sponses on irregular patches. In contrast, LYMA concen-
+trates activation along the true defect geometry.
+Table 2
+Comparison of attention mechanisms on NEU-DET.
+Model Precision (%) Recall (%) mAP@0.5 (%) Parameters (M) GFLOPs FPS
+YOLOv11n 73.4 69.9 76.7 2.91 7.7 90.81
++ CA 75.4 73.5 77.9 2.91 7.7 87.24
++ CAA 73.7 70.3 76.2 2.96 7.9 85.55
++ GAM 73.6 76.5 78.1 3.01 9.0 87.68
++ ECA 74.0 73.2 77.2 2.91 7.7 89.16
++ CBAM 76.9 74.5 78.4 2.92 7.7 90.56
++ LYMA 73.9 77.479.03.05 8.0 86.61
+Original YOLOv11n CA CAA
+GAM ECA CBAM LYMA
+Figure 7: Grad-CAM comparison of different attention mechanisms.
+J. Ren et al.:Preprint submitted to ElsevierPage 5 of 9
+
+========== PAGE 6 ==========
+SPL-YOLO for steel surface defect detection
+4.5. Ablation studies
+Ablation experiments were performed on NEU-DET
+using 300 epochs, AdamW, an initial learning rate of 0.01,
+and an input resolution of640 × 640. Table 3 quantifies the
+individual and combined contributions.
+Table 3
+Ablation results on NEU-DET.
+Model Precision (%) Recall (%) mAP@0.5 (%) Parameters (M) GFLOPs FPS
+YOLOv11n 73.4 69.9 76.7 2.91 7.7 90.81
++ SDAConv 73.4 73.1 77.5 2.14 5.4 93.06
++ P_SMD 73.3 71.4 77.0 1.95 5.0 81.27
++ LYMA 73.9 77.4 79.0 3.05 8.0 86.61
++ SDAConv + P_SMD 74.4 73.1 77.6 1.96 5.1 76.49
++ SDAConv + LYMA 74.5 74.1 78.6 2.19 5.5 88.19
++ P_SMD + LYMA 74.2 75.2 77.3 2.00 5.1 76.05
+SPL-YOLO79.370.879.0 2.01 5.276.07
+4.5.1. Core-module ablation analysis
+SDAConv reduces the parameter count from 2.91 M to
+2.14 M and computation from 7.7 to 5.4 GFLOPs while
+improvingmAP@0.5by0.8percentagepoints.Thisverifies
+that high-frequency residual enhancement can strengthen
+finedefectswhileremovingredundantcomputation.P_SMD
+produces the smallest standalone model, at 1.95 M parame-
+ters and 5.0 GFLOPs, demonstrating the efficiency of 50%
+sparse deformation. LYMA yields the largest accuracy gain
+and raises recall to 77.4%.
+When all modules are combined, the lightweight
+structures absorb the modest overhead of LYMA. SPL-
+YOLO reaches 79.3% precision and 79.0% mAP@0.5 with
+only 2.01 M parameters and 5.2 GFLOPs. Relative to
+YOLOv11n,thesevaluescorrespondtoreductionsof30.9%
+and32.5%,respectively.Althoughrecallislowerthanthatof
+LYMA alone, precision increases by 5.4 percentage points
+because background suppression and sparse gating reduce
+falsepositives.Thefullmodelthereforeprovidesapractical
+balance among high precision, low false-alarm rate, and
+compact size.
+Although LYMA alone delivers the highest standalone
+mAP@0.5of79.0%,itrequires3.05Mparameters.Thefull
+SPL-YOLO preserves the same 79.0% mAP@0.5 with only
+2.01 M parameters, a reduction of 34.1%. This result indi-
+cates that SDAConv and P_SMD provide complementary,
+parameter-efficientfeatureenhancement:theyretainmodest
+individual accuracy gains while offsetting the complexity
+introduced by LYMA. Among the evaluated configurations,
+thejointdesignthereforerepresentsaPareto-efficienttrade-
+off between detection accuracy and model compactness for
+edge deployment.
+4.5.2. Qualitative detection results
+Figure 8 compares ground truth, YOLOv11n, and SPL-
+YOLO for three groups of all six defect classes at a con-
+fidence threshold of 0.3. YOLOv11n misses several low-
+contrastcrazingandpitted-surfaceinstances,whereasSDA-
+Conv strengthens their boundary responses. For irregular
+patches and rolled-in scale, the baseline boxes contain con-
+siderablenormalbackground;thejointactionofP_SMDand
+LYMA produces tighter localization. SPL-YOLO also sup-
+pressesfalseandoverlappingboxesforintertwinedscratches
+and irregular inclusions.
+Crazing Inclusion Patches Pitted surface Rolled-in scale Scratches
+Group 1
+Ground truth
+YOLOv11n
+SPL-YOLO
+J. Ren et al.:Preprint submitted to ElsevierPage 6 of 9
+
+========== PAGE 7 ==========
+SPL-YOLO for steel surface defect detection
+Crazing Inclusion Patches Pitted surface Rolled-in scale Scratches
+Group 2
+Ground truth
+YOLOv11n
+SPL-YOLO
+Group 3
+Ground truth
+YOLOv11n
+SPL-YOLO
+Figure 8: Qualitative comparison of steel surface defect detection before and after improvement (confidence>0.3).
+4.6. Comparison with state-of-the-art detectors
+SPL-YOLOwascomparedwithmainstreamlightweight
+YOLO variants and recent steel-defect detectors under con-
+sistentNEU-DETsettings.AsshowninTable4,SPL-YOLO
+obtains the highest precision and mAP@0.5 while retaining
+the smallest parameter count among models with reported
+values.
+Table 4
+Comparison with representative detectors on NEU-DET. A dash denotes an unreported value.
+Model Precision (%) Recall (%) mAP@0.5 (%) Parameters (M) GFLOPs FPS
+YOLOv8n 75.4 71.3 76.5 3.01 8.2 106.06
+YOLOv10n 73.3 69.1 74.6 2.71 8.4 104.33
+YOLOv11n 73.4 69.9 76.7 2.91 7.7 90.81
+YOLOv11s 75.7 73.1 78.2 10.72 26.6 85.47
+YOLOv12n 70.2 72.0 75.9 2.89 7.7 75.46
+YOLO26 71.4 75.2 76.4 2.50 5.8 95.23
+YOLO-DSF[20] – – 78.4 4.66 12.1 –
+RAGA-YOLO[21] – – 75.5 2.20 6.5 –
+CBH-YOLO[9] – – 78.6 2.93 7.4 –
+DSP-YOLO[22] 78.3 69.7 78.6 – 6.0 –
+SPL-YOLO79.370.879.0 2.01 5.276.07
+J. Ren et al.:Preprint submitted to ElsevierPage 7 of 9
+
+========== PAGE 8 ==========
+SPL-YOLO for steel surface defect detection
+Compared with YOLOv11s, SPL-YOLO uses only
+18.7% of the parameters and 19.5% of the computation, yet
+improves mAP@0.5 by 0.8 percentage points. It also ex-
+ceeds YOLO-DSF[20], RAGA-YOLO[21], CBH-YOLO[9],
+andDSP-YOLO[22]inmAP@0.5.Theseresultsdemonstrate
+thattheproposedmultiscalespatial–frequencycollaboration
+achievesamoreefficientaccuracy–complexitytrade-offthan
+increasing network width or introducing high-cost opera-
+tors. Although its multipath perception introduces modest
+latency,76.07FPSremainssuitableforreal-timeinspection.
+Figure 9: Precision–recall curves on NEU-DET for YOLOv11n (left) and SPL-YOLO (right).
+4.7. Generalization experiment
+Table 5 reports results on GC10-DET under the same
+training hyperparameters. SPL-YOLO achieves the best
+mAP@0.5 of 69.3%, improving over YOLOv11n by 1.2
+percentage points and over YOLOv8n, YOLOv12n, and
+YOLO26by2.3,2.6,and4.4percentagepoints,respectively.
+Table 5
+Generalization results on GC10-DET.
+Model Precision (%) Recall (%) mAP@0.5 (%) Parameters (M) GFLOPs
+YOLOv8n 67.8 62.0 67.0 3.01 8.2
+YOLOv10n 59.4 60.0 61.8 2.71 8.4
+YOLOv11n 64.5 69.1 68.1 2.91 7.7
+YOLOv12n 60.4 72.3 66.7 2.89 7.7
+YOLO26 70.9 61.8 64.9 2.50 5.8
+SPL-YOLO 70.3 66.169.3 2.01 5.2
+Its precision of 70.3% indicates effective false-positive
+suppression. Although YOLOv12n obtains higher recall, its
+lower precision reveals greater sensitivity to complex back-
+groundnoise,resultinginaninferioroverallmAP.Thesere-
+sultsshowthatfrequencydecouplingandmorphologypriors
+are not specific to a single dataset and provide transferable
+enhancement across industrial inspection scenarios.
+5. Conclusion
+This paper proposed SPL-YOLO to address extreme
+spatial–frequency heterogeneity in steel defects and strin-
+gent resource constraints in industrial edge inspection. Its
+multilevel architecture combines SDAConv for frequency-
+domain enhancement, P_SMD for efficient non-rigid ge-
+ometric modeling, and LYMA for morphology-prior-
+guided focusing. Together, these modules alleviate spatial–
+frequency coupling, reconcile deformation perception with
+efficiency, and reduce heterogeneous feature confusion.
+On NEU-DET, SPL-YOLO achieves 79.0% mAP@0.5
+and 79.3% precision with 2.01 M parameters and 5.2
+GFLOPs. Relative to YOLOv11n, the parameter count and
+computationdecreaseby30.9%and32.5%,whilemAP@0.5
+increases by 2.3 percentage points and inference remains at
+76.07 FPS.
+OnGC10-DET,themodelobtainsthehighestmAP@0.5
+of 69.3%. Heatmaps and qualitative results further show
+improved localization of irregular contours and stronger
+responses to weak defects.
+Performance under extreme reflective glare and se-
+vere surface tearing remains an open issue. Future work
+will combine pruning and knowledge distillation to re-
+duce storage and energy consumption, and will extend the
+spatial–frequency collaborative strategy to aluminum, cop-
+per, printed circuit boards, and other industrial materials.
+Code availability
+The source code and implementation of SPL-YOLO are
+publicly available athttps://github.com/LIU-creator-Hub/
+SPL-YOLO.
+J. Ren et al.:Preprint submitted to ElsevierPage 8 of 9
+
+========== PAGE 9 ==========
+SPL-YOLO for steel surface defect detection
+References
+[1] L.Wang,Z.Gong,Z.Liang,Steelstripsurfacedefectdetectionbased
+onimprovedyolov5salgorithm,ModularMachineTool&Automatic
+Manufacturing Technique (12) (2024) 181–186.
+[2] J. Yang, Research on steel surface defect detection based on deep
+learning, Master’s thesis, Lanzhou Jiaotong University (2025).
+[3] Y. Tang, X. Hu, X. Luo, et al., Dual-modal small object detection
+with receptive field fusion and cross-scale global modeling, Infrared
+Technology (2025).
+[4] S. Ling, X. Li, Y. Chao, et al., Surface defect detection of rolled strip
+steel based on mgsp-yolo, Forging & Stamping Technology 50 (10)
+(2025) 160–171.
+[5] X. Shen, Q. Zhao, Improved yolov8 method for lightweight steel
+surfacedefectdetection,JournalofOrdnanceEquipmentEngineering
+46 (4) (2025) 302–309.
+[6] R. Bumbálek, T. Zoubek, J. Majerník, J. D. Marcel, S. N. Umurungi,
+K. Šramhauser, F. Špalek, Detection of surface defects in metallic
+materialsusingYOLOarchitecture,ArchivesofFoundryEngineering
+20 (1) (2026) 11–18.doi:10.24425/afe.2026.020.
+[7] Y. Zhou, Z. Zhao, MPA-YOLO: Steel surface defect detection based
+on improved YOLOv8 framework, Pattern Recognition 168 (2025)
+111897.
+[8] R. Ma, J. Chen, Y. Feng, Z. Zhou, J. Xie, ELA-YOLO: An effi-
+cient method with linear attention for steel surface defect detection
+during manufacturing, Advanced Engineering Informatics 65 (2025)
+103377.
+[9] B. Gao, J. Tong, R. Fu, Z. Zhang, Y. Yuan, CBH-YOLO: A steel
+surface defect detection algorithm based on cross-stage Mamba en-
+hancement and hierarchical semantic graph fusion, Neurocomputing
+(2025) 131467.
+[10] J. Huang, X. Zhang, L. Jia, Y. Zhou, An improved you only look
+once model for multi-scale steel surface defect detection with multi-
+level alignment and cross-layer redistribution features, Engineering
+Applications of Artificial Intelligence 145 (2025) 110214.
+[11] J. Ma, J. Zhang, Q. Wang, et al., Strip surface defect detection
+algorithm based on improved yolov11, Journal of Iron and Steel
+Research 37 (10) (2025) 1345–1358.
+[12] S. Liu, L. Qi, H. Qin, et al., Path aggregation network for instance
+segmentation, arXiv preprint arXiv:1803.01534 (2018).
+[13] J. Liu, C. Zhang, J. Li, Using anchor-free object detectors to detect
+surface defects, Processes 12 (12) (2024) 2817.
+[14] H. Zhang, S. Li, Q. Miao, R. Fang, S. Xue, Q. Hu, S. Chan, Surface
+defectdetectionofhotrolledsteelbasedonmulti-scalefeaturefusion
+and attention mechanism residual block, Scientific Reports 14 (1)
+(2024) 7671.doi:10.1038/s41598-024-57990-3.
+[15] Z. Hu, J. Yan, F. Niu, W. Hou, Edge-aware and context-guided mul-
+tiscale feature integration network for steel surface defect detection,
+Applied Soft Computing (2026) 115446.
+[16] P. Jiang, J. Zhang, J. Chen, Enhanced rain removal network with
+convolutionalblockattentionmodule(cbam):anovelapproachtoim-
+age de-raining, EURASIP Journal on Advances in Signal Processing
+2025 (1) (2025) 9.
+[17] L. Han, C. Wang, Q. Fu, D. Niu, N. Li, Large selective receptive
+field network for multi-class surface defects, IEEE Transactions on
+Instrumentation and Measurement (2026).
+[18] R. Ge, Y. Wang, Y. Wei, A reparameterized hierarchical feature
+learningnetworkdesignedforaccuratesizingandlocalizationofsteel
+surface defects, Engineering Applications of Artificial Intelligence
+168 (2026) 114101.
+[19] J. Ji, J. Wang, Y. Chen, D. Lu, Hot-rolled strip steel surface defect
+detection based on improved yolov4, Computer Engineering and
+Design 44 (9) (2023) 2786–2793.
+[20] S. Jin, Z. Cao, C. Yu, Two-stage vision system: Application of
+multi-perspective object detection network and character recognition
+networkinindustrialproductclassification,EngineeringApplications
+of Artificial Intelligence 156 (2025) 111190.
+[21] T. Zheng, L. Yu, Y. Shi, F. Niu, RAGA-YOLO: Enhancing global
+structural perception for accurate and efficient surface defect detec-
+tion,JournalofComputationalDesignandEngineering13(1)(2026)
+324–351.
+[22] X. Li, Z. Fan, Q. Liu, X. Wan, DSP-YOLO: An improved YOLO11-
+basedmethodforsteelsurfacedefectdetection,MeasurementScience
+and Technology 36 (9) (2025) 096201.
+Jinxia Ren received the master’s degree and is a professor. Her research
+interestsincludeintelligentcontrolandintelligentoptimizationalgorithms.
+YangLiuisamaster’sstudent.Hisresearchinterestsincludedeeplearning
+and algorithm optimization.
+J. Ren et al.:Preprint submitted to ElsevierPage 9 of 9

@@ -1,0 +1,464 @@
+{
+ "partial deformable convolution": [
+  {
+   "title": "Action Prediction Based on Partial Video Observation via Context and Temporal Sequential Network With Deformable Convolution",
+   "year": 2020,
+   "venue": "IEEE Access",
+   "doi": "https://doi.org/10.1109/access.2020.3008848",
+   "cited": 4,
+   "abstract": "Predicting activity motion form video is of great importance with multiple applications in computer vision. From the self-driving cars field to the health system, the earlier the anticipation the higher the classification probability success. The main challenge of prediction is accurate information of the object of interest in the frame as compared to the full-frame, from the partial observation. To this end, we propose an end-to-end two-stage architecture model that leverages pixel-level features awareness of spatiotemporal information of the object of interest. The first stage of our model is a classification block composed of 3 blocks layers: a background subtraction layer that enables the model to focus on the subject of interest followed by Deformable Convolution layers for feature extraction and finally an additive Softmax for the final classification. Learned information from the first stage is then transferred to the second stage composed of Long Short-Term Memory layers and a final loss function for prediction. The pervasive evaluation on the UT-Interaction, the HMDB51 as well as on the UCF-Sports benchmarks show the betterment of our model performance over threshold probability difference as compared to other solutions. And demonstrate an early action prediction at a lower observation ratio."
+  },
+  {
+   "title": "Automatic Segmentation of Non-tumor Tissues in Glioma MR Brain Images Using Deformable Registration with Partial Convolutional Networks",
+   "year": 2021,
+   "venue": "Lecture notes in computer science",
+   "doi": "https://doi.org/10.1007/978-3-030-72084-1_4",
+   "cited": 8,
+   "abstract": ""
+  },
+  {
+   "title": "Automatic Segmentation of Non-Tumor Tissues in Glioma MR Brain Images Using Deformable Registration with Partial Convolutional Networks",
+   "year": 2020,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.2007.05224",
+   "cited": 1,
+   "abstract": "In brain tumor diagnosis and surgical planning, segmentation of tumor regions and accurate analysis of surrounding normal tissues are necessary for physicians. Pathological variability often renders difficulty to register a well-labeled normal atlas to such images and to automatic segment/label surrounding normal brain tissues. In this paper, we propose a new registration approach that first segments brain tumor using a U-Net and then simulates missed normal tissues within the tumor region using a partial convolutional network. Then, a standard normal brain atlas image is registered onto such tumor-removed images in order to segment/label the normal brain tissues. In this way, our new approach greatly reduces the effects of pathological variability in deformable registration and segments the normal tissues surrounding brain tumor well. In experiments, we used MICCAI BraTS2018 T1 tumor images to evaluate the proposed algorithm. By comparing direct registration with the proposed algorithm, the results showed that the Dice coefficient for gray matters was significantly improved for surrounding normal brain tissues."
+  },
+  {
+   "title": "A Lightweight Conditional Diffusion Segmentation Network Based on Deformable Convolution for Surface Defect Detection",
+   "year": 2025,
+   "venue": "Journal of Electrical and Computer Engineering",
+   "doi": "https://doi.org/10.1155/jece/2935790",
+   "cited": 0,
+   "abstract": "Surface defect detection is crucial to industrial manufacturing and research for surface defects has drawn much attention. However, defects in industrial environment are very diverse. Because defects scale and poses are constantly changing and current methods lack the ability to model the deformation. To solve this problem, a lightweight conditional diffusion segmentation network based on deformable convolution is proposed. First, the conditional diffusion process is introduced for effective feature extraction; by gradually corrupting the defect images and recovering them from latent space, the model can obtain pixel‐level segmentation results in an iterative process. Second, the efficient feature extraction block is proposed to address the problem of modeling varying defects, which is designed with a partial deformable convolutional layer that can fully extract geometric features of the diverse defects to further enhance the modeling power of the proposed network. Furthermore, the hyperparameters of the diffusion process are discussed to further improve the performance of the proposed method. The experimental results on DAGM2007, MT, AeBAD, and MVTec‐AD indicate that the proposed model performs better than other baseline models."
+  },
+  {
+   "title": "Deformable Shape Completion with Graph Convolutional Autoencoders",
+   "year": 2018,
+   "venue": null,
+   "doi": "https://doi.org/10.1109/cvpr.2018.00202",
+   "cited": 248,
+   "abstract": "The availability of affordable and portable depth sensors has made scanning objects and people simpler than ever. However, dealing with occlusions and missing parts is still a significant challenge. The problem of reconstructing a (possibly non-rigidly moving) 3D object from a single or multiple partial scans has received increasing attention in recent years. In this work, we propose a novel learning-based method for the completion of partial shapes. Unlike the majority of existing approaches, our method focuses on objects that can undergo non-rigid deformations. The core of our method is a variational autoencoder with graph convolutional operations that learns a latent space for complete realistic shapes. At inference, we optimize to find the representation in this latent space that best fits the generated shape to the known partial input. The completed shape exhibits a realistic appearance on the unknown part. We show promising results towards the completion of synthetic and real scans of human body and face meshes exhibiting different styles of articulation and partiality."
+  },
+  {
+   "title": "3D Deformable Convolutions for MRI Classification",
+   "year": 2019,
+   "venue": null,
+   "doi": "https://doi.org/10.1109/icmla.2019.00278",
+   "cited": 22,
+   "abstract": "Deep learning convolution neural networks have proved to be a powerful tool for MRI analysis. In current work, we explore the potential of the deformable convolution deep neural network layers for MRI data classification. We propose new 3D deformable convolutions (d-convolutions), implement them in VoxResNet architecture and apply for structural MRI data classification. We show that 3D d-convolutions outperform standard ones and are effective for unprocessed 3D MR images being robust to particular geometrical properties of the data. Firstly proposed dVoxResNet architecture exhibits high potential for the use in MRI data classification."
+  },
+  {
+   "title": "A deformable convolution and shuffle attention enhanced network for surface defect detection",
+   "year": 2026,
+   "venue": "Engineering Applications of Artificial Intelligence",
+   "doi": "https://doi.org/10.1016/j.engappai.2026.114864",
+   "cited": 1,
+   "abstract": ""
+  },
+  {
+   "title": "An Optimized Method for Video Portrait Matting Based on Deformable Convolution",
+   "year": 2025,
+   "venue": null,
+   "doi": "https://doi.org/10.1109/dsis67228.2025.11390594",
+   "cited": 0,
+   "abstract": "The RVM (Robust Video Matting) model is a practically influential video portrait matting model. However, it still suffers from issues of temporal inconsistency and semantic inaccuracy in certain matting scenarios. Building upon the RVM model, this paper further improves and optimizes its feature encoder, proposing a novel video portrait matting model. Specifically, low-cost deformable convolution is adopted to replace the conventional convolution in Layer 1 of the MobileNet Large network, aiming to enhance the semantic accuracy of matting by expanding the receptive field. Additionally, partial Bneck modules in the MobileNet Large network are reparameterized to reduce the parameter scale and improve inference speed. Experimental results demonstrate that the proposed optimized model achieves performance improvements of$3.73 \\%, 4.19 \\%, 1.98 \\%$, and 4.44% in terms of Mean Absolute Difference (MAD), Mean Squared Error (MSE), Spatial Gradient (Grad), and Connectivity (Conn) metrics, respectively. Under similar computational costs, the matting accuracy is further enhanced."
+  }
+ ],
+ "sparse deformable convolution": [
+  {
+   "title": "OBELISK-Net: Fewer layers to solve 3D multi-organ segmentation with sparse deformable convolutions",
+   "year": 2019,
+   "venue": "Medical Image Analysis",
+   "doi": "https://doi.org/10.1016/j.media.2019.02.006",
+   "cited": 78,
+   "abstract": ""
+  },
+  {
+   "title": "Deformable Convolutions Improve Time Series Classification by Capturing Sparsed Patterns",
+   "year": 2026,
+   "venue": null,
+   "doi": "https://doi.org/10.1145/3748522.3780002",
+   "cited": 0,
+   "abstract": ""
+  },
+  {
+   "title": "D-CONFORMER: Deformable Sparse Transformer Augmented Convolution for Voxel-Based 3D Object Detection",
+   "year": 2023,
+   "venue": null,
+   "doi": "https://doi.org/10.1109/icassp49357.2023.10097060",
+   "cited": 8,
+   "abstract": "Although CNN-based and Transformer-based detectors have made impressive improvements in 3D object detection, these two network paradigms suffer from the interference of insufficient receptive field and local detail weakening, which significantly limits the feature extraction performance of the backbone. In this paper, we propose to fuse convolution and transformer, and simultaneously considering the different contributions of non-empty voxels at different positions in 3D space to object detection, it is not consistent with applying standard convolution and transformer directly on voxels. Specifically, we design a novel deformable sparse transformer to perform long-range information interaction on fine-grained local detail semantics aggregated by focal sparse convolution, termed D-Conformer. D-Conformer learns valuable voxels with position-wise in sparse space and can be applied to most voxel-based detectors as a backbone. Extensive experiments demonstrate that our method achieves satisfactory detection results and outperforms state-of-the-art 3D detection methods by a large margin."
+  },
+  {
+   "title": "A YOLO Architecture Optimized with Deformable Sparse Convolution and Context-Aware Attention",
+   "year": 2025,
+   "venue": null,
+   "doi": "https://doi.org/10.1109/acctcs66275.2025.00033",
+   "cited": 0,
+   "abstract": "This study develops a real-time safety monitoring system based on improved deformable convolution. This research presents an enhanced YOLO architecture featuring: (1)a C3K2 deformable convolution module with C2PSA attention mechanism for efficient feature learning, and(2)a domain-adapted dataset (Tourist_behavior) integrating annotated instances with six customized safety-critical behavior categories(crowd gathering, illegal parking, etc.). The optimized model demonstrates practical deployment capabilities on edge devices while maintaining detection accuracy. Experimental results demonstrate the enhanced model achieves 87.5% mAP@ 0.5 on Tourist_behavior dataset, surpassing YOLOv9c (85.2 %) and YOLOv8s (84.7 %) in accuracy, while achieving 39 FPS real-time throughput on Jetson Xavier NX under occlusion scenarios. The solution provides an effective technical framework for scenic area safety management while maintaining pose adaptation."
+  },
+  {
+   "title": "Ship Detection in SAR Images Using Sparse R-CNN with Wavelet Deformable Convolution and Attention Mechanism",
+   "year": 2025,
+   "venue": "Remote Sensing",
+   "doi": "https://doi.org/10.3390/rs17233794",
+   "cited": 1,
+   "abstract": "This paper proposes a synthetic aperture radar (SAR) ship detection method based on wavelet-domain deformable convolution (WDC) and multi-head attention, built upon the Sparse R-CNN framework. First, a wavelet-domain convolution module is introduced to enhance the modeling of ship targets with diverse scales and shapes while incorporating frequency-domain information. Deformable convolution adaptively adjusts sampling locations, overcoming the limitations of traditional convolution in capturing target edges and blurred boundaries. Next, a position encoding module is employed to normalize candidate bounding box coordinates and integrate them into region-of-interest features. By providing spatial context, position encoding strengthens spatial perception and enables the subsequent multi-head attention mechanism to more effectively capture associations between targets and candidate regions, thereby improving localization accuracy under arbitrary spatial distributions. Furthermore, the original dynamic head is replaced with a multi-head attention mechanism. Through position-encoded multi-head attention, the model more accurately emphasizes regions with spatial and semantic correlations to the target, enhancing both focus and discrimination for sparse targets. Extensive experiments conducted on two benchmark datasets (SSDD and HRSID) demonstrate the effectiveness and superiority of the proposed method. Overall, the method significantly improves the detection of sparse, multi-scale, and randomly distributed ship targets in SAR images."
+  },
+  {
+   "title": "Deformable Convolutional Networks",
+   "year": 2017,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.1703.06211",
+   "cited": 428,
+   "abstract": "Convolutional neural networks (CNNs) are inherently limited to model geometric transformations due to the fixed geometric structures in its building modules. In this work, we introduce two new modules to enhance the transformation modeling capacity of CNNs, namely, deformable convolution and deformable RoI pooling. Both are based on the idea of augmenting the spatial sampling locations in the modules with additional offsets and learning the offsets from target tasks, without additional supervision. The new modules can readily replace their plain counterparts in existing CNNs and can be easily trained end-to-end by standard back-propagation, giving rise to deformable convolutional networks. Extensive experiments validate the effectiveness of our approach on sophisticated vision tasks of object detection and semantic segmentation. The code would be released."
+  },
+  {
+   "title": "MambaReg: Mamba-Based Disentangled Convolutional Sparse Coding for Unsupervised Deformable Multi-Modal Image Registration",
+   "year": 2024,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.2411.01399",
+   "cited": 0,
+   "abstract": "Precise alignment of multi-modal images with inherent feature discrepancies poses a pivotal challenge in deformable image registration. Traditional learning-based approaches often consider registration networks as black boxes without interpretability. One core insight is that disentangling alignment features and non-alignment features across modalities bring benefits. Meanwhile, it is challenging for the prominent methods for image registration tasks, such as convolutional neural networks, to capture long-range dependencies by their local receptive fields. The methods often fail when the given image pair has a large misalignment due to the lack of effectively learning long-range dependencies and correspondence. In this paper, we propose MambaReg, a novel Mamba-based architecture that integrates Mamba's strong capability in capturing long sequences to address these challenges. With our proposed several sub-modules, MambaReg can effectively disentangle modality-independent features responsible for registration from modality-dependent, non-aligning features. By selectively attending to the relevant features, our network adeptly captures the correlation between multi-modal images, enabling focused deformation field prediction and precise image alignment. The Mamba-based architecture seamlessly integrates the local feature extraction power of convolutional layers with the long-range dependency modeling capabilities of Mamba. Experiments on public non-rigid RGB-IR image datasets demonstrate the superiority of our method, outperforming existing approaches in terms of registration accuracy and deformation field smoothness."
+  },
+  {
+   "title": "Revisiting Deformable Convolution for Depth Completion",
+   "year": 2023,
+   "venue": null,
+   "doi": "https://doi.org/10.1109/iros55552.2023.10342026",
+   "cited": 8,
+   "abstract": "Depth completion, which aims to generate high-quality dense depth maps from sparse depth maps, has attracted increasing attention in recent years. Previous work usually employs RGB images as guidance, and introduces iterative spatial propagation to refine estimated coarse depth maps. However, most of the propagation refinement methods require several iterations and suffer from a fixed receptive field, which may contain irrelevant and useless information with very sparse input. In this paper, we address these two challenges simultaneously by revisiting the idea of deformable convolution. We propose an effective architecture that leverages deformable kernel convolution as a single-pass refinement module, and empirically demonstrate its superiority. To better understand the function of deformable convolution and exploit it for depth completion, we further systematically investigate a variety of representative strategies. Our study reveals that, different from prior work, deformable convolution needs to be applied on an estimated depth map with a relatively high density for better performance. We evaluate our model on the large-scale KITTI dataset and achieve state-of-the-art level performance in both accuracy and inference speed. Our code is available at https://github.com/AlexSunNiklReDC."
+  }
+ ],
+ "deformable convolution background suppression steel surface defect": [
+  {
+   "title": "Steel Surface Defect Detection via Deformable Convolution and Background Suppression",
+   "year": 2023,
+   "venue": "IEEE Transactions on Instrumentation and Measurement",
+   "doi": "https://doi.org/10.1109/tim.2023.3277989",
+   "cited": 70,
+   "abstract": "Surface defect detection is of great significance to ensure the quality of steel plate. The surface defects of steel plate are characterized by multiple types, complex and irregular shapes, large scale range, and high similarity with normal regions, resulting in low accuracy of widely used vision based defect detection methods. To overcome these issues, this paper proposes a method of detecting steel plate surface defects based on deformation convolution and background suppression. First, an improved Faster RCNN method with deformable convolution and Region-of-Interest align is proposed to enhance the detection performance for large-scale defects with complex and irregular shapes; Second, a background suppression method is proposed to enhance the discrimination ability between the normal region and the defect region. Experimental results show that, compared with the state-of-the-art methods, the proposed method can significantly improve the defect detection performance of steel plate."
+  },
+  {
+   "title": "SPDCN: Strip-based Deformable Convolutional Network for Steel Surface Defect Segmentation",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.2607.21456",
+   "cited": 0,
+   "abstract": "Steel surface defect segmentation is critical for industrial quality inspection, yet existing methods struggle with elongated, anisotropic defects such as cracks and scratches due to the isotropic receptive fields of standard convolutions and rigid sampling grids that cannot adapt to irregular defect boundaries. To address these limitations, we propose Strip-based Predictor for Deformable Convolutional Networks (SPDCN) with two key innovations. The \\textbf{Fuzzy-enhanced Multi-scale Context Module (FMCM)} employs group-wise multi-branch convolutions with an intuitionistic fuzzy channel attention mechanism to adaptively capture multi-scale contextual information across varying defect sizes. The \\textbf{Adaptive Direction-Aware Deformable Convolution (ADADC)} replaces the conventional offset predictor with decoupled horizontal and vertical strip convolutions, enabling the deformable sampling grid to anisotropically align with the principal orientation of elongated defects. Extensive experiments on public steel surface defect benchmarks demonstrate that SPDCN consistently outperforms state-of-the-art methods, achieving 89.60\\% mIoU on NEU-Seg with only 3.54M parameters. The source code is publicly available at https://github.com/DWlzm ."
+  },
+  {
+   "title": "Enhanced Faster Region Convolutional Neural Networks for Steel Surface Defect Detection",
+   "year": 2020,
+   "venue": "ISIJ International",
+   "doi": "https://doi.org/10.2355/isijinternational.isijint-2019-335",
+   "cited": 67,
+   "abstract": "Bar steel surface defects detection is very important to steel production and quality control. Many traditional computer vision methods have been applied to industrial defects detection, but they are usually environmentally sensitive and not robust enough. In this paper, a deep learning defects detection method based on Faster Region Convolutional Neural Networks (Faster R-CNN) is proposed. Firstly, to solve the problem of missed detection of a large number of small defects, we introduce Weighted Region of Interest (RoI) Pooling instead of RoI pooling, which eliminates the area misalignment caused by the two quantization processes in the latter, and the small defects detection rate is significantly improved. Secondly, considering that most of the defects are irregular in shape, we use deformable convolution in upper layers to adapt to various shapes by learning the positional offset in convolution. Thirdly, owing to the diversity of bar steel defects, multi-scale feature extraction network with Feature Pyramid Networks (FPN) is proposed to build feature pyramids. Finally, we propose Strict-Non-Maximum Suppression (Strict-NMS) algorithm to reduce overlapping bounding boxes as much as possible. Experiments on defect datasets in real industrial environments show that the detection rate of this method can reach 97%, which is much higher than state-of-the-art methods."
+  },
+  {
+   "title": "Steel Surface Defect Recognition: A Survey",
+   "year": 2022,
+   "venue": "Coatings",
+   "doi": "https://doi.org/10.3390/coatings13010017",
+   "cited": 191,
+   "abstract": "Steel surface defect recognition is an important part of industrial product surface defect detection, which has attracted more and more attention in recent years. In the development of steel surface defect recognition technology, there has been a development process from manual detection to automatic detection based on the traditional machine learning algorithm, and subsequently to automatic detection based on the deep learning algorithm. In this paper, we discuss the key hardware of steel surface defect detection systems and offer suggestions for related options; second, we present a literature review of the algorithms related to steel surface defect recognition, which includes traditional machine learning algorithms based on texture features and shape features as well as supervised, unsupervised, and weakly supervised deep learning algorithms (Incomplete supervision, inexact supervision, imprecise supervision). In addition, some common datasets and algorithm performance evaluation metrics in the field of steel surface defect recognition are summarized. Finally, we discuss the challenges of the current steel surface defect recognition algorithms and the corresponding solutions, and our future work focus is explained."
+  },
+  {
+   "title": "Fusion YOLOv8s and Dynamic Convolution Algorithm for Steel Surface Defect Detection",
+   "year": 2025,
+   "venue": "Symmetry",
+   "doi": "https://doi.org/10.3390/sym17050701",
+   "cited": 1,
+   "abstract": "The detection of surface defects in steel is a prerequisite for improving steel quality. When detecting surface defects in steel, the texture features of defective areas often show significant differences from the symmetry patterns of normal areas. To address the issues of low accuracy and slow recognition speed in existing steel surface defect detection methods, this study proposes an improved defect detection method based on YOLOv8s. To focus on the information of asymmetric areas in images and amplify the model’s capacity to learn target defects, we integrate the ODConv (Omni-Dimensional Dynamic Convolution) module into the backbone feature extraction network. This module infuses attention within the convolution process, augmenting the feature extraction capacity of the backbone network. Furthermore, to refine the regression speed of target boxes and enhance positioning accuracy, we adopt the WIoU (Wise Intersection over Union) bounding box loss function, featuring a dynamic non-monotonic focusing mechanism. Experimental results on the NEU-DET dataset reveal that the improved YOLOv8s-OD model achieves a 4.5% accuracy improvement compared to the original YOLOv8s, with an mAP of 78.9%. The model demonstrates robust performance in steel surface defect detection. With a modest size of only 21.5 MB, the model sustains a high detection speed of 89FPS, elevating detection accuracy while preserving real-time performance. This renders the model highly applicable in real-world industrial scenarios."
+  },
+  {
+   "title": "Photovoltaic Cell Surface Defect Detection via Subtle Defect Enhancement and Background Suppression",
+   "year": 2025,
+   "venue": "Micromachines",
+   "doi": "https://doi.org/10.3390/mi16091003",
+   "cited": 2,
+   "abstract": "As the core component of photovoltaic (PV) power generation systems, PV cells are susceptible to subtle surface defects, including thick lines, cracks, and finger interruptions, primarily caused by stress and material brittleness during the manufacturing process. These defects substantially degrade energy conversion efficiency by inducing both optical and electrical losses, yet existing detection methods struggle to precisely identify and localize them. In addition, the complexity of background noise and other factors further increases the challenge of detecting these subtle defects. To address these challenges, we propose a novel PV Cell Surface Defect Detector (PSDD) that extracts subtle defects both within the backbone network and during feature fusion. In particular, we propose a plug-and-play Subtle Feature Refinement Module (SFRM) that integrates into the backbone to enhance fine-grained feature representation by rearranging local spatial features to the channel dimension, mitigating the loss of detail caused by downsampling. SFRM further employs a general attention mechanism to adaptively enhance key channels associated with subtle defects, improving the representation of fine defect features. In addition, we propose a Background Noise Suppression Block (BNSB) as a key component of the feature aggregation stage, which employs a dual-path strategy to fuse multiscale features, reducing background interference and improving defect saliency. Specifically, the first path uses a Background-Aware Module (BAM) to adaptively suppress noise and emphasize relevant features, while the second path adopts a residual structure to retain the original input features and prevent the loss of critical details. Experiments show that PSDD outperforms other methods, achieving the highest mAP50 scores of 93.6% on the PVEL-AD."
+  },
+  {
+   "title": "MTF-YOLO: A Steel Surface Defect Detector with Multiscale Texture Fusion and Variance-Guided Convolution",
+   "year": 2026,
+   "venue": "Research Square",
+   "doi": "https://doi.org/10.21203/rs.3.rs-8234620/v1",
+   "cited": 0,
+   "abstract": ""
+  },
+  {
+   "title": "Steel Surface Defect Detection Method Based on Improved YOLOX",
+   "year": 2024,
+   "venue": "IEEE Access",
+   "doi": "https://doi.org/10.1109/access.2024.3374869",
+   "cited": 58,
+   "abstract": "Steel is a crucial material that is extensively utilized in various aspects of daily life and holds significant importance. However, during its production, there is a possibility of certain defects arising that could have a negative impact on the quality of the steel. Only by accurately detecting the defects on the steel surface can we avoid the harm caused by defects in steel. Because the steel surface defect detection algorithm is prone to misdetection, missed detection, and other problems, a steel surface defect detection algorithm based on improved YOLOX is proposed. First, the CSPCrossLayer module proposed in this paper is used to replace the CSPLayer structure in the backbone network to enrich the gradient information of the network and strengthen the feature extraction capability; Then, the SA (Shuffle Attention) module is added after the output of the backbone network, highlighting the general information to input high-quality features for the feature fusion network; Finally, the PSblock module is proposed to replace the CSPLayer structure in the feature fusion network, which reduces redundant computations to efficiently perform feature fusion on feature layers of different scales and improves the feature fusion capability of the model. The experiments involved testing the algorithm on two datasets: the publicly available NEU-DET dataset and a steel rail dataset collected in this paper. The algorithm can reach 77% mAP on the NEU-DET dataset, while the detection speed is 100 FPS. It reaches 88.8% mAP on the steel rail dataset, and the detection speed is 93FPS. These results demonstrate that the proposed algorithm is capable of swiftly and accurately detecting surface defects in steel materials."
+  }
+ ],
+ "octave convolution crack detection": [
+  {
+   "title": "Crack Detection and Classification in Moroccan Pavement Using Convolutional Neural Network",
+   "year": 2022,
+   "venue": "Infrastructures",
+   "doi": "https://doi.org/10.3390/infrastructures7110152",
+   "cited": 36,
+   "abstract": "Crack is a condition indicator of the pavement’s structure. Generally, crack detection is an essential task for effective diagnosis of the road network. Moreover, evaluation of road quality is necessary to ensure traffic security. Since 2011, a periodic survey of approximately 57,500 km of Moroccan roads has been performed using an inspection vehicle (SMAC) which is equipped with high resolution cameras and GPS/DGPS receivers. Until recently, the teams of the National Center for Road Studies and Research (CNER) analyzed road surface states by visualization of pavement surface image sequences captured by the Multifunctional Pavement Assessment System (SMAC) in order to detect defects in road surfaces and classify them according to their type. However, this method involves manual processing and is complex, time consuming and subjective. In this paper, we propose an automated methodology for crack detection and classification in Moroccan flexible pavements using Convolutional Neural Networks (CNN). Transfer learning is also applied by testing a pre-trained Visual Geometry Group 19 (VGG-19) model. For the dataset used in this paper, the results indicate that good crack detection and classification are achieved using both models."
+  },
+  {
+   "title": "RAO‐UNet: a residual attention and octave UNet for road crack detection via balance loss",
+   "year": 2021,
+   "venue": "IET Intelligent Transport Systems",
+   "doi": "https://doi.org/10.1049/itr2.12146",
+   "cited": 33,
+   "abstract": "Abstract The acquisition and evaluation of road cracks are essential to ensure the availability of roads and necessary maintenance. However, the road cracks images have been obsessed with the problem of imbalance in the category and the number of categories. Among them, the category imbalance makes the network focus on the background and the detection result will be complete black. The imbalanced number of categories leads to the missed detection of thin cracks. In addition, a large number of images generated in real time put forward higher requirements on memory and calculations. The RAO‐UNet is built which is an efficient and effective network for crack detection in road images using encoder–decoder and residual attention module‐based image frequency relationship. Compared with otheTr methods, RAO‐UNet could learn multiple‐spatial‐frequency features, thus can enhance the differentiation of high‐frequency features while saving the computational cost. Regarding the space optimisation, a novel balance loss function is proposed, which not only solves the balance problem, but also ensures the stability and consistency in the optimisation process. We evaluated RAO‐UNet on public data sets. Compared with state‐of‐the‐art methods, it achieves better performance on processing speed and detection accuracy. Specifically, RAO‐UNet achieves 98.32% / 97.86% Precision, 97.84% / 95.89% Recall, 97.61% / 97.04% F1 score on CFD and AigleRN data sets, respectively."
+  },
+  {
+   "title": "Generalized Morse Wavelets parameter selection and transfer learning for pavement transverse cracking detection",
+   "year": 2023,
+   "venue": "Engineering Applications of Artificial Intelligence",
+   "doi": "https://doi.org/10.1016/j.engappai.2023.106355",
+   "cited": 29,
+   "abstract": "Monitoring road surface anomalies is crucial to avoid potential harm to pedestrians, vehicles, and vehicle users. These factors have motivated the development of systems that employ signal processing and machine learning algorithms to detect these irregularities automatically by sensing the vehicle’s vibration. The wavelet transform (WT) has been frequently used for signal representation and feature extraction to solve signal classification problems. However, selecting a mother wavelet to perform the WT is challenging due to the need for methods that help to validate the time–frequency representation. Furthermore, machine learning algorithms require a sizeable sample size to train them, and setting their parameters is considered a time-consuming task. This paper proposes to compute the Continuous Wavelet Transform (CWT) through Generalized Morse Wavelets (GMWs) on vehicle’s vertical acceleration data for pavement transverse cracking detection. The parameters gamma and beta of the GMWs and the CWT’s voices per octave (VPO) were selected based on two metrics, the Heisenberg area and the Average Reconstruction Mean Squared Error. The scalogram generated through the CWT and GMWs was used to fine-tune pre-trained convolutional neural networks (CNNs) through transfer learning, such as GoogLeNet, SqueezeNet, and ResNet18. The proposed methodology set 1 VPO for the CWT, while the parameters gamma and beta of GMWs were set as 3 and 1.3333, respectively. The 5-fold cross-validation results of fine-tuning the CNNs showed that SqueezeNet provided a higher average validation sensitivity (84.3290 ± 5.5704) than GoogLeNet and ResNet18; however, the average validation specificity of SqueezeNet (92.7061 ± 7.2403) was lower."
+  },
+  {
+   "title": "Blade Crack Diagnosis Based on Blade Tip Timing and Convolution Neural Networks",
+   "year": 2023,
+   "venue": "Applied Sciences",
+   "doi": "https://doi.org/10.3390/app13021102",
+   "cited": 11,
+   "abstract": "The diagnosis of blade crack faults is critical to ensuring the safety of turbomachinery. Blade tip timing (BTT) is a non-contact vibration displacement measurement technique, which has been extensively studied for blade vibration condition monitoring recently. The fault diagnosis methods based on deep learning can be summarized as studying the internal logical relationship of data, automatically mining features, and intelligently identifying faults. This research proposes a crack fault diagnostic method based on BTT measurement data and convolutional neural networks (CNNs) for the crack fault detection of blades. There are two main aspects: the numerical analysis of the rotating blade crack fault diagnosis and the experimental research in rotating blade crack fault diagnosis. The results show that the method outperforms many other traditional machine learning models in both numerical models and tests for diagnosing the depth and location of blade cracks. The findings of this study contribute to the real-time online crack fault diagnosis of blades."
+  },
+  {
+   "title": "Pneumonia Detection on Chest X-ray Images Using Ensemble of Deep Convolutional Neural Networks",
+   "year": 2022,
+   "venue": "Applied Sciences",
+   "doi": "https://doi.org/10.3390/app12136448",
+   "cited": 189,
+   "abstract": "Pneumonia is a life-threatening lung infection resulting from several different viral infections. Identifying and treating pneumonia on chest X-ray images can be difficult due to its similarity to other pulmonary diseases. Thus, the existing methods for predicting pneumonia cannot attain substantial levels of accuracy. This paper presents a computer-aided classification of pneumonia, coined Ensemble Learning (EL), to simplify the diagnosis process on chest X-ray images. Our proposal is based on Convolutional Neural Network (CNN) models, which are pretrained CNN models that have been recently employed to enhance the performance of many medical tasks instead of training CNN models from scratch. We propose to use three well-known CNNs (DenseNet169, MobileNetV2, and Vision Transformer) pretrained using the ImageNet database. These models are trained on the chest X-ray data set using fine-tuning. Finally, the results are obtained by combining the extracted features from these three models during the experimental phase. The proposed EL approach outperforms other existing state-of-the-art methods and obtains an accuracy of 93.91% and a F1-score of 93.88% on the testing phase."
+  },
+  {
+   "title": "Crack Detection and Localisation in Additive Manufacturing with Simulated Acoustic Emission Data and Deep Learning",
+   "year": 2026,
+   "venue": "UNSWorks (University of New South Wales, Sydney, Australia)",
+   "doi": "https://doi.org/10.26190/unsworks/32561",
+   "cited": 0,
+   "abstract": "Laser powder bed fusion (LPBF) is an advantageous metal Additive Manufacturing (AM) technique; however, LPBF-fabricated products are highly susceptible to defects such as cracks, lack-of-fusion pores, and keyhole pores. In these defects, crack detection and localisation pose significant challenges, as the crack events are not directly related to process parameters and are hard to control. This thesis presents an in-situ monitoring framework based on structural-borne acoustic emission (SBAE) sensors, combined with machine learning (ML), for crack detection and localisation in LPBF. Transfer learning is also considered a powerful tool for addressing the problem of universality. This framework consists of two modules: a crack-detection algorithm that utilises threshold-based event extraction, followed by an event classification function based on a convolutional neural network (CNN), and a localisation system that locates the signal source in a matrix-layout classification task using acoustic features. Since real crack data are difficult to capture in sufficient volume for ML, simulated signals were generated during tensiletest crack experiments, pencil-lead-break (PLB) tests, and ball-drop tests across three different materials to provide location information. The continuous wavelet transform (CWT) was applied to convert one-dimensional acoustic signals into time-frequency combined spectra for ML. Results show that the crack-detection algorithm achieved 99.21% test accuracy on the test set, and the localisation algorithm achieved 99.26% accuracy on the aluminium-alloy dataset using a 16-grid classification. However, the trained model exhibits poor performance on cross-material localisation, achieving accuracies of 39.60% and 38.92% on the stainless steel and bronze datasets, respectively. Although materials challenge the universality, transfer learning improved the localisation accuracies to 92.92% and 97.90%. This research demonstrates that combining Acoustic Emission (AE) with CWT and deep learning is a feasible strategy for monitoring cracks in LPBF."
+  },
+  {
+   "title": "GSC-YOLO: An Efficiency-Balanced Object Detection Model for Road Crack Detection",
+   "year": 2026,
+   "venue": "SSRN Electronic Journal",
+   "doi": "https://doi.org/10.2139/ssrn.7068388",
+   "cited": 0,
+   "abstract": ""
+  },
+  {
+   "title": "Cognitive-Based Crack Detection for Road Maintenance: An Integrated System in Cyber-Physical-Social Systems",
+   "year": 2022,
+   "venue": "IEEE Transactions on Systems Man and Cybernetics Systems",
+   "doi": "https://doi.org/10.1109/tsmc.2022.3227209",
+   "cited": 36,
+   "abstract": "Effective road maintenance can not only achieve a balance between limited resources and long-term high-efficiency performance of road but also reduce the loss of life and property caused by road damage to vehicles and pedestrians. Due to the lack of a multidimensional dynamic monitoring system and enough extremely special data, the existing road maintenance system cannot accurately assess the road surface condition and provide timely early warning of sudden road damage. In this article, the M-RM system is proposed, that is, a metaverse-enabled road maintenance system based on cyber–physical–social systems (CPSSs), which fully utilizes the social and artificial system information of CPSS, as well as the simulation, monitoring, diagnosis and prediction functions of road systems in the virtual world of the metaverse. Then, in the road damage detection of system model in the virtual world, for the virtual data of the core assets of the metaverse, we propose an adaptive and information-preserving data augmentation (AIDA) algorithm-based nonclassical receptive field suppression and enhancement, an algorithm developed from human visual cognition. This algorithm enables the generation of a large amount of scarce fidelity data and avoids the introduced noise from impairing the performance of nonaugmented data. Finally, a crack detection algorithm named pay attention twice (PAT) is proposed, which uses the generated virtual data for training, and achieves secondary attention to high-frequency targets by fusing frequency-division convolution and mixed-domain attention mechanism. The detection performance of small targets in uncertain environments is enhanced. The metaverse system built in the current research can not only be used for road maintenance but also empower the traffic metaverse by using the traffic flow prediction module embedded in the algorithm. Experimental results demonstrate that the proposed algorithm can be applied to the road damage detection task under different noise and weather conditions, and the performance outweighs other state-of-the-art algorithms."
+  }
+ ],
+ "high frequency guided feature aggregation strip steel": [
+  {
+   "title": "High-Frequency Guided Feature Aggregation for Strip Steel Surface Defect Detection",
+   "year": 2026,
+   "venue": "IEEE Transactions on Automation Science and Engineering",
+   "doi": "https://doi.org/10.1109/tase.2026.3728911",
+   "cited": 0,
+   "abstract": ""
+  },
+  {
+   "title": "DEPANet: A Differentiable Edge-Guided Pyramid Aggregation Network for Strip Steel Surface Defect Segmentation",
+   "year": 2025,
+   "venue": "Algorithms",
+   "doi": "https://doi.org/10.3390/a18050279",
+   "cited": 3,
+   "abstract": "The steel strip is an important and ideal material for the automotive and aerospace industries due to its superior machinability, cost efficiency, and flexibility. However, surface defects such as inclusions, spots, and scratches can significantly impact product performance and durability. Accurately identifying these defects remains challenging due to the complex texture structures and subtle variations in the material. In order to tackle this challenge, we propose a Differentiable Edge-guided Pyramid Aggregation Network (DEPANet) to utilize edge information for improving segmentation performance. DEPANet adopts an end-to-end encoder-decoder framework, where the encoder consisting of three key components: a backbone network, a Differentiable Edge Feature Pyramid network (DEFP), and Edge-aware Feature Aggregation Modules (EFAMs). The backbone network is designed to extract overall features from the strip steel surface, while the proposed DEFP utilizes learnable Laplacian operators to extract multiscale edge information of defects across scales. In addition, the proposed EFAMs aggregate the overall features generating from the backbone and the edge information obtained from DEFP using the Convolutional Block Attention Module (CBAM), which combines channel attention and spatial attention mechanisms, to enhance feature expression. Finally, through the decoder, implemented as a Feature Pyramid Network (FPN), the multiscale edge-enhanced features are progressively upsampled and fused to reconstruct high-resolution segmentation maps, enabling precise defect localization and robust handling of defects across various sizes and shapes. DEPANet demonstrates superior segmentation accuracy, edge preservation, and feature representation on the SD-saliency-900 dataset, outperforming other state-of-the-art methods and delivering more precise and reliable defect segmentation."
+  },
+  {
+   "title": "A Cross-Scale Spatial–Semantic Feature Aggregation Network for Strip Steel Surface Defect Detection",
+   "year": 2025,
+   "venue": "Materials",
+   "doi": "https://doi.org/10.3390/ma18245567",
+   "cited": 4,
+   "abstract": "Strip steel surface defect detection remains a challenging task due to the diverse scales and uneven spatial distribution of defects, which often lead to incomplete feature representation and missed detections in sparsely distributed regions. To address these challenges, we propose a novel cross-scale spatial-semantic feature aggregation network (CSSFAN) that achieves fine-grained and semantically consistent feature fusion across multiple scales. Specifically, CSSFAN adopts a bottom-up feature aggregation strategy equipped with a series of cross-scale spatial-semantic aggregation modules (CSSAMs). Each CSSAM first establishes a mapping relationship between high-level feature points and low-level feature regions and then introduces a cross-scale attention mechanism that adaptively injects spatial details from low-level features into high-level semantic representations. This aggregation strategy bridges the gap between spatial precision and semantic abstraction, enabling the network to capture subtle and irregular defect patterns. Furthermore, we introduce an adaptive region proposal network (ARPN) to cope with the uneven spatial distribution of defects. ARPN dynamically adjusts the number of region proposals according to the local feature complexity, ensuring that regions with dense or subtle defects receive more proposal attention, while sparse or background regions are adaptively suppressed, thereby enhancing the model's sensitivity to defect-prone areas. Extensive experiments on two strip steel surface defect datasets demonstrate that our method significantly improves detection performance, validating its effectiveness and robustness."
+  },
+  {
+   "title": "Supervised Focused Feature Network for Steel Strip Surface Defect Detection",
+   "year": 2025,
+   "venue": "Mathematics",
+   "doi": "https://doi.org/10.3390/math13203285",
+   "cited": 2,
+   "abstract": "Accurate detection of strip steel surface defects is a critical step to ensure product quality and prevent potential safety hazards. In practical inspection scenarios, defects on strip steel surfaces typically exhibit sparse distributions, diverse morphologies, and irregular shapes, while background regions dominate the images, exhibiting highly similar texture characteristics. These characteristics pose challenges for detection algorithms to efficiently and accurately localize and extract defect features. To address these challenges, this study proposes a Supervised Focused Feature Network for steel strip surface defect detection. Firstly, the network constructs a supervised range based on annotation information and introduces supervised convolution operations in the backbone network, limiting feature extraction within the supervised range to improve feature learning effectiveness. Secondly, a supervised deformable convolution layer is designed to achieve adaptive feature extraction within the supervised range, enhancing the detection capability for irregularly shaped defects. Finally, a supervised region proposal strategy is proposed to optimize the sample allocation process using the supervised range, improving the quality of candidate regions. Experimental results demonstrate that the proposed method achieves a mean Average Precision (mAP) of 81.2% on the NEU-DET dataset and 72.5% mAP on the GC10-DET dataset. Ablation studies confirm the contribution of each proposed module to feature extraction efficiency and detection accuracy. Results indicate that the proposed network effectively enhances the efficiency of sparse defect feature extraction and improves detection accuracy."
+  },
+  {
+   "title": "A2S2C-Det: Dual-Path Adaptive Aggregation with Spatial-Semantic Compensation for Strip Steel Surface Defect Detection",
+   "year": 2026,
+   "venue": "Journal of Imaging",
+   "doi": "https://doi.org/10.3390/jimaging12070312",
+   "cited": 1,
+   "abstract": "Accurate identification of surface defects on steel strips is critical for manufacturing quality assurance and operational reliability. Although deep learning has greatly advanced defect detection, precise recognition remains challenging due to significant background texture interference, loss of spatial details, and semantic imbalance across multiscale features. To address these challenges, we propose A2S2C-Det, a novel detector that integrates dual-path adaptive aggregation with spatial–semantic compensation to enhance feature representation for defect detection. First, we design a plug-and-play semantic refinement bottleneck (SRB) that augments backbone features through multiscale perception and a feature-screening bottleneck, enabling the model to suppress background interference while capturing subtle defect shapes. We further introduce a dual-path adaptive aggregation (DPAA) module that fuses complementary information from cross-level semantic consistency and fine-grained structural cues via two coordinated pathways, alleviating semantic imbalance across scales. Finally, we develop a spatial-semantic gated compensation (SSGC) module that adaptively supplies semantic information to low-level features while delivering spatial details to high-level features, recovering lost spatial details in high-level features. Extensive experiments on three benchmark datasets demonstrate that our A2S2C-Det achieves mAP50 of 82.0%, 73.0%, and 91.2%, and mAP of 47.1%, 36.5%, and 60.6%, respectively, comparing favorably against current state-of-the-art methods."
+  },
+  {
+   "title": "Development of an Improved YOLOv7-Based Model for Detecting Defects on Strip Steel Surfaces",
+   "year": 2023,
+   "venue": "Coatings",
+   "doi": "https://doi.org/10.3390/coatings13030536",
+   "cited": 26,
+   "abstract": "The detection of defects on the surface is of great importance for both the production and the application of strip steel. In order to detect the defects accurately, an improved YOLOv7-based model for detecting strip steel surface defects is developed. To enhances the ability of the model to extract features and identify small features, the ConvNeXt module is introduced to the backbone network structure, and the attention mechanism is embedded in the pooling module. To reduce the size and improves the inference speed of the model, an improved C3 module was used to replace the ELAN module in the head. The experimental results show that, compared with the original models, the mAP of the proposed model reached 82.9% and improved by 6.6%. The proposed model can satisfy the need for accurate detection and identification of strip steel surface defects."
+  },
+  {
+   "title": "A Strip Steel Surface Defect Salient Object Detection Based on Channel, Spatial and Self-Attention Mechanisms",
+   "year": 2024,
+   "venue": "Electronics",
+   "doi": "https://doi.org/10.3390/electronics13214277",
+   "cited": 7,
+   "abstract": "Strip steel is extensively utilized in industries such as automotive manufacturing and aerospace due to its superior machinability, economic benefits, and adaptability. However, defects on the surface of steel strips, such as inclusions, patches, and scratches, significantly affect the performance and service life of the product. Therefore, the salient object detection of surface defects on strip steel is crucial to ensure the quality of the final product. Many factors, such as the low contrast of surface defects on strip steel, the diversity of defect types, complex texture structures, and irregular defect distribution, hinder existing detection technologies from accurately identifying and segmenting defect areas against complex backgrounds. To address the above problems, we propose a novel detector called S3D-SOD for the salient object detection of strip steel surface defects. For the encoding stage, a residual self-attention block is proposed to explore semantic information cues of high-level features to locate and guide low-level feature information. In addition, we apply a general residual channel and spatial attention to low-level features, enabling the model to adaptively focus on the key channels and spatial areas of feature maps with high resolutions, thereby enhancing the encoder features and accelerating the convergence of the model. For the decoding stage, a simple residual decoder block with an upsampling operation is proposed to realize the integration and interaction of feature information between different layers. Here, the simple residual decoder block is used for feature integration due to the following observation: backbone networks like ResNet and the Swin Transformer, after being pretrained on the large dataset ImageNet and then fine-tuned on a smaller dataset for strip steel surface defects, are capable of extracting feature maps that contain both general image features and the specific characteristics required for the salient object detection of strip steel surface defects. The experimental results on the SD-saliency-900 dataset show that S3D-SOD is better than advanced methods, and it has strong generalization ability and robustness."
+  },
+  {
+   "title": "Surface defect detection of hot rolled steel based on multi-scale feature fusion and attention mechanism residual block",
+   "year": 2024,
+   "venue": "Scientific Reports",
+   "doi": "https://doi.org/10.1038/s41598-024-57990-3",
+   "cited": 90,
+   "abstract": "To improve the precision of defect categorization and localization in images, this paper proposes an approach for detecting surface defects in hot-rolled steel strips. The approach uses an improved YOLOv5 network model to overcome the issues of inadequate feature extraction capacity and suboptimal feature integration when identifying surface defects on steel strips. The proposed method achieves higher detection accuracy and localization precision, making it more competitive and applicable in real production. Firstly, the multi-scale feature fusion (MSF) strategy is utilized to fuse shallow and deep features effectively and enrich detailed information relevant to target defects. Secondly, the CSPLayer Res2Attention block (CRA block) residual module is introduced to reduce the loss of defect information during hierarchical transmission, thereby enhancing the extraction of fine-grained features and improving the perception of details and global features. Finally, the experimental results indicate that the mAP on the NEU-DET and GC10-DET datasets approaches 78.5% and 67.3%, respectively, which is 4.9% and 2.1% higher than that of the baseline. Meanwhile, it has higher precision and more precise localization capabilities than other methods. Furthermore, it also achieves 59.2% mAP on the APDDD dataset, indicating its potential for growth in further domains."
+  }
+ ],
+ "multi branch strip dilated depthwise convolution attention": [
+  {
+   "title": "Brain Tumor Segmentation Using Partial Depthwise Separable Convolutions",
+   "year": 2022,
+   "venue": "IEEE Access",
+   "doi": "https://doi.org/10.1109/access.2022.3223654",
+   "cited": 27,
+   "abstract": "Gliomas are the most common and aggressive form of all brain tumors, with medial survival rates of less than two years for the highest grade. While accurate and reproducible segmentation of brain tumors is paramount for an effective treatment plan and diagnosis, automatic brain tumor segmentation is challenging because the lesion can appear anywhere in the brain with varying shapes and sizes from one patient to another. Moreover, segmentation is only done by analyzing pixel intensity values of surrounding tissues, and the diffusing nature of aggressive brain tumors makes it even more challenging to delineate tumor boundaries. Nevertheless, deep learning methods have superior performance in automatic brain tumor segmentation. However, their boost in performance comes at the cost of high computational complexity. This paper proposes efficient network architecture for 3D brain tumor segmentation, partially utilizing depthwise separable convolutions to reduce computational costs. The experimental results on the BraTS 2020 dataset show that our methods could achieve comparable results with the state-of-the-art methods with minimum computational complexity. Furthermore, we provide a critical analysis of the current efficient model designs. The code for this project is available at https://github.com/tmagadza/partialDepthwiseNet."
+  },
+  {
+   "title": "Rolling Bearing Fault Diagnosis Model Based on Multi-Scale Depthwise Separable Convolutional Neural Network Integrated with Spatial Attention Mechanism",
+   "year": 2025,
+   "venue": "Sensors",
+   "doi": "https://doi.org/10.3390/s25134064",
+   "cited": 9,
+   "abstract": "In response to the challenges posed by complex and variable operating conditions of rolling bearings and the limited availability of labeled data, both of which hinder the effective extraction of key fault features and reduce diagnostic accuracy, this study introduces a model that combines a spatial attention (SA) mechanism with a multi-scale depthwise separable convolution module. The proposed approach first employs the Gramian angular difference field (GADF) to convert raw signals. This conversion maps the temporal characteristics of the signal into an image format that intrinsically preserves both temporal dynamics and phase relationships. Subsequently, the model architecture incorporates a spatial attention mechanism and a multi-scale depthwise separable convolutional module. Guided by the attention mechanism to concentrate on discriminative feature regions and to suppress noise, the convolutional component efficiently extracts hierarchical features in parallel through the multi-scale receptive fields. Furthermore, the trained model serves as a pre-trained network and is transferred to novel variable-condition environments to enhance diagnostic accuracy in few-shot scenarios. The effectiveness of the proposed model was evaluated using bearing datasets and field-collected industrial data. Experimental results confirm that the proposed model offers outstanding fault recognition performance and generalization capability across diverse working conditions, small-sample scenarios, and real industrial environments."
+  },
+  {
+   "title": "Multi-scale fusion convolution network with progressive dilation for real-time salient object detection of surface defects on strip steel",
+   "year": 2026,
+   "venue": "Scientific Reports",
+   "doi": "https://doi.org/10.1038/s41598-026-43386-y",
+   "cited": 0,
+   "abstract": "Accurate and efficient salient object detection (SOD) of strip-steel surface defects plays a critical role in maintaining product quality in modern industrial manufacturing. However, existing SOD methods often struggle to balance detection accuracy with inference efficiency, especially when handling complex defect patterns in real-time production environments. To address this challenge, we propose a novel framework named Multi-Scale Fusion Convolution Network with Progressive Dilation (MSFNet-PD), which is specifically designed for real-time salient defect detection. The proposed MSFNet-PD introduces a multi-scale feature fusion architecture that aggregates contextual information from different receptive fields, enabling the model to capture both fine-grained local textures and broader semantic structures of surface defects. In addition, we incorporate a progressive dilation strategy, where dilation rates are gradually increased across convolutional layers. This design enhances the model's ability to perceive defects of varying sizes without significantly increasing computational cost or degrading feature resolution. Furthermore, MSFNet-PD employs a lightweight backbone and an efficient fusion mechanism, which collectively contribute to faster inference speed, making the network well-suited for deployment in real-world, high-speed strip steel inspection lines. Extensive experiments conducted on the SD-Saliency-900 dataset demonstrate that our method achieves competitive performance in both detection accuracy and processing speed compared with several recent baselines. The promising results affirm the effectiveness of our approach in practical industrial defect inspection scenarios."
+  },
+  {
+   "title": "IMSE: Efficient U-Net-based Speech Enhancement using Inception Depthwise Convolution and Amplitude-Aware Linear Attention",
+   "year": 2025,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.2511.14515",
+   "cited": 0,
+   "abstract": "Achieving a balance between lightweight design and high performance remains a significant challenge for speech enhancement (SE) tasks on resource-constrained devices. Existing state-of-the-art methods, such as MUSE, have established a strong baseline with only 0.51M parameters by introducing a Multi-path Enhanced Taylor (MET) transformer and Deformable Embedding (DE). However, an in-depth analysis reveals that MUSE still suffers from efficiency bottlenecks: the MET module relies on a complex \"approximate-compensate\" mechanism to mitigate the limitations of Taylor-expansion-based attention, while the offset calculation for deformable embedding introduces additional computational burden. This paper proposes IMSE, a systematically optimized and ultra-lightweight network. We introduce two core innovations: 1) Replacing the MET module with Amplitude-Aware Linear Attention (MALA). MALA fundamentally rectifies the \"amplitude-ignoring\" problem in linear attention by explicitly preserving the norm information of query vectors in the attention calculation, achieving efficient global modeling without an auxiliary compensation branch. 2) Replacing the DE module with Inception Depthwise Convolution (IDConv). IDConv borrows the Inception concept, decomposing large-kernel operations into efficient parallel branches (square, horizontal, and vertical strips), thereby capturing spectrogram features with extremely low parameter redundancy. Extensive experiments on the VoiceBank+DEMAND dataset demonstrate that, compared to the MUSE baseline, IMSE significantly reduces the parameter count by 16.8\\% (from 0.513M to 0.427M) while achieving competitive performance comparable to the state-of-the-art on the PESQ metric (3.373). This study sets a new benchmark for the trade-off between model size and speech quality in ultra-lightweight speech enhancement."
+  },
+  {
+   "title": "Strip R-CNN: Large Strip Convolution for Remote Sensing Object Detection",
+   "year": 2025,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.2501.03775",
+   "cited": 8,
+   "abstract": "While witnessed with rapid development, remote sensing object detection remains challenging for detecting high aspect ratio objects. This paper shows that large strip convolutions are good feature representation learners for remote sensing object detection and can detect objects of various aspect ratios well. Based on large strip convolutions, we build a new network architecture called Strip R-CNN, which is simple, efficient, and powerful. Unlike recent remote sensing object detectors that leverage large-kernel convolutions with square shapes, our Strip R-CNN takes advantage of sequential orthogonal large strip convolutions in our backbone network StripNet to capture spatial information. In addition, we improve the localization capability of remote-sensing object detectors by decoupling the detection heads and equipping the localization branch with strip convolutions in our strip head. Extensive experiments on several benchmarks, for example DOTA, FAIR1M, HRSC2016, and DIOR, show that our Strip R-CNN can greatly improve previous work. In particular, our 30M model achieves 82.75% mAP on DOTA-v1.0, setting a new state-of-the-art record. Our code will be made publicly available.Code is available at https://github.com/YXB-NKU/Strip-R-CNN."
+  },
+  {
+   "title": "ADE-MDA-Net: an asymmetric dual-encoder network with multi-dilation attention for bearing surface defect segmentation",
+   "year": 2026,
+   "venue": "Research Square",
+   "doi": "https://doi.org/10.21203/rs.3.rs-10918613/v1",
+   "cited": 0,
+   "abstract": ""
+  },
+  {
+   "title": "Lightweight Smoke Recognition Based on Deep Convolution and Self-Attention",
+   "year": 2022,
+   "venue": "Mathematical Problems in Engineering",
+   "doi": "https://doi.org/10.1155/2022/1218713",
+   "cited": 2,
+   "abstract": "Deep convolutional networks have better smoke recognition performance. However, a lightweight network model and high recognition accuracy cannot be balanced when deployed on hardware with limited computing resources such as edge computing. Based on this background, we propose a novel smoke recognition network that combines convolutional networks (CNN) and self-attention. The core ideas of this framework are as follows: (1) Combine the depthwise convolution and asymmetric convolution of large convolution kernels to construct a lightweight CNN model, and realize multiscale extraction of feature information with slight model complexity. (2) Combined with the self-attention in transformer, a skip-connection branch is designed, which improves the feature extraction capability of the backbone network through parallel processing and fusion of feature map information. (3) Fusion multicomponent discrete cosine transform (DCT) is used to compress channel information and expand the ability of global average pooling (GAP) to aggregate feature maps. The proposed DCT-GAP improves the accuracy of the network without adding additional computational costs. Experimental results show that the proposed CSANet achieves an average accuracy of over 98.3% with 238 M FLOPs and 5.8 M parameters on the homemade smoke dataset, outperforming state-of-the-art competitors."
+  },
+  {
+   "title": "SPDCN: Strip-based Deformable Convolutional Network for Steel Surface Defect Segmentation",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "doi": "https://doi.org/10.48550/arxiv.2607.21456",
+   "cited": 0,
+   "abstract": "Steel surface defect segmentation is critical for industrial quality inspection, yet existing methods struggle with elongated, anisotropic defects such as cracks and scratches due to the isotropic receptive fields of standard convolutions and rigid sampling grids that cannot adapt to irregular defect boundaries. To address these limitations, we propose Strip-based Predictor for Deformable Convolutional Networks (SPDCN) with two key innovations. The \\textbf{Fuzzy-enhanced Multi-scale Context Module (FMCM)} employs group-wise multi-branch convolutions with an intuitionistic fuzzy channel attention mechanism to adaptively capture multi-scale contextual information across varying defect sizes. The \\textbf{Adaptive Direction-Aware Deformable Convolution (ADADC)} replaces the conventional offset predictor with decoupled horizontal and vertical strip convolutions, enabling the deformable sampling grid to anisotropically align with the principal orientation of elongated defects. Extensive experiments on public steel surface defect benchmarks demonstrate that SPDCN consistently outperforms state-of-the-art methods, achieving 89.60\\% mIoU on NEU-Seg with only 3.54M parameters. The source code is publicly available at https://github.com/DWlzm ."
+  }
+ ],
+ "learnable morphology convolution neural network": [
+  {
+   "title": "Interpretable classification of Alzheimer’s disease pathologies with a convolutional neural network pipeline",
+   "year": 2019,
+   "venue": "Nature Communications",
+   "doi": "https://doi.org/10.1038/s41467-019-10212-1",
+   "cited": 234,
+   "abstract": "Neuropathologists assess vast brain areas to identify diverse and subtly-differentiated morphologies. Standard semi-quantitative scoring approaches, however, are coarse-grained and lack precise neuroanatomic localization. We report a proof-of-concept deep learning pipeline that identifies specific neuropathologies-amyloid plaques and cerebral amyloid angiopathy-in immunohistochemically-stained archival slides. Using automated segmentation of stained objects and a cloud-based interface, we annotate > 70,000 plaque candidates from 43 whole slide images (WSIs) to train and evaluate convolutional neural networks. Networks achieve strong plaque classification on a 10-WSI hold-out set (0.993 and 0.743 areas under the receiver operating characteristic and precision recall curve, respectively). Prediction confidence maps visualize morphology distributions at high resolution. Resulting network-derived amyloid beta (Aβ)-burden scores correlate well with established semi-quantitative scores on a 30-WSI blinded hold-out. Finally, saliency mapping demonstrates that networks learn patterns agreeing with accepted pathologic features. This scalable means to augment a neuropathologist's ability suggests a route to neuropathologic deep phenotyping."
+  },
+  {
+   "title": "The application of convolutional neural network to stem cell biology",
+   "year": 2019,
+   "venue": "Inflammation and Regeneration",
+   "doi": "https://doi.org/10.1186/s41232-019-0103-3",
+   "cited": 112,
+   "abstract": "Induced pluripotent stem cells (iPSC) are one the most prominent innovations of medical research in the last few decades. iPSCs can be easily generated from human somatic cells and have several potential uses in regenerative medicine, disease modeling, drug screening, and precision medicine. However, further innovation is still required to realize their full potential. Machine learning is an algorithm that learns from large datasets for pattern formation and classification. Deep learning, a form of machine learning, uses a multilayered neural network that mimics human neural circuit structure. Deep neural networks can automatically extract features from an image, although classical machine learning methods still require feature extraction by a human expert. Deep learning technology has developed recently; in particular, the accuracy of an image classification task by using a convolutional neural network (CNN) has exceeded that of humans since 2015. CNN is now used to address several tasks including medical issues. We believe that CNN would also have a great impact on the research of stem cell biology. iPSCs are utilized after their differentiation to specific cells, which are characterized by molecular techniques such as immunostaining or lineage tracing. Each cell shows a characteristic morphology; thus, a morphology-based identification system of cell type by CNN would be an alternative technique. The development of CNN enables the automation of identifying cell types from phase contrast microscope images without molecular labeling, which will be applied to several researches and medical science. Image classification is a strong field among deep learning tasks, and several medical tasks will be solved by deep learning-based programs in the future."
+  },
+  {
+   "title": "A review of convolutional neural networks in computer vision",
+   "year": 2024,
+   "venue": "Artificial Intelligence Review",
+   "doi": "https://doi.org/10.1007/s10462-024-10721-6",
+   "cited": 1140,
+   "abstract": "Abstract In computer vision, a series of exemplary advances have been made in several areas involving image classification, semantic segmentation, object detection, and image super-resolution reconstruction with the rapid development of deep convolutional neural network (CNN). The CNN has superior features for autonomous learning and expression, and feature extraction from original input data can be realized by means of training CNN models that match practical applications. Due to the rapid progress in deep learning technology, the structure of CNN is becoming more and more complex and diverse. Consequently, it gradually replaces the traditional machine learning methods. This paper presents an elementary understanding of CNN components and their functions, including input layers, convolution layers, pooling layers, activation functions, batch normalization, dropout, fully connected layers, and output layers. On this basis, this paper gives a comprehensive overview of the past and current research status of the applications of CNN models in computer vision fields, e.g., image classification, object detection, and video prediction. In addition, we summarize the challenges and solutions of the deep CNN, and future research directions are also discussed."
+  },
+  {
+   "title": "A review of the use of convolutional neural networks in agriculture",
+   "year": 2018,
+   "venue": "The Journal of Agricultural Science",
+   "doi": "https://doi.org/10.1017/s0021859618000436",
+   "cited": 518,
+   "abstract": "Abstract Deep learning (DL) constitutes a modern technique for image processing, with large potential. Having been successfully applied in various areas, it has recently also entered the domain of agriculture. In the current paper, a survey was conducted of research efforts that employ convolutional neural networks (CNN), which constitute a specific class of DL, applied to various agricultural and food production challenges. The paper examines agricultural problems under study, models employed, sources of data used and the overall precision achieved according to the performance metrics used by the authors. Convolutional neural networks are compared with other existing techniques, and the advantages and disadvantages of using CNN in agriculture are listed. Moreover, the future potential of this technique is discussed, together with the authors’ personal experiences after employing CNN to approximate a problem of identifying missing vegetation from a sugar cane plantation in Costa Rica. The overall findings indicate that CNN constitutes a promising technique with high performance in terms of precision and classification accuracy, outperforming existing commonly used image-processing techniques. However, the success of each CNN model is highly dependent on the quality of the data set used."
+  },
+  {
+   "title": "A Multiscale Fusion Convolutional Neural Network for Plant Leaf Recognition",
+   "year": 2018,
+   "venue": "IEEE Signal Processing Letters",
+   "doi": "https://doi.org/10.1109/lsp.2018.2809688",
+   "cited": 168,
+   "abstract": "Plant leaf recognition is a computer vision task used to automatically recognize plant species. It is very challenging since rich plant leaf morphological variations, such as sizes, textures, shapes, venation, and so on. Most existing plant leaf methods typically normalize all plant leaf images to the same size and recognize them at one scale, resulting in unsatisfactory performances. In this letter, a multiscale fusion convolutional neural network (MSF-CNN) is proposed for plant leaf recognition at multiple scales. First, an input image is down-sampled into multiples low resolution images with a list of bilinear interpolation operations. Then, these input images with different scales are step-by-step fed into the MSF-CNN architecture to learn discriminative features at different depths. At this stage, the feature fusion between two different scales is realized by a concatenation operation, which concatenates feature maps learned on different scale images from a channel view. Along with the depth of the MSF-CNN, multiscale images are progressively handled and the corresponding features are fused. Third, the last layer of the MSF-CNN aggregates all discriminative information to obtain the final feature for predicting the plant species of the input image. Experiments show the proposed MSF-CNN method is superior to multiple state-of-the art plant leaf recognition methods on the MalayaKew Leaf dataset and the LeafSnap Plant Leaf dataset."
+  },
+  {
+   "title": "Multi-scale Convolutional Neural Networks for Lung Nodule Classification",
+   "year": 2015,
+   "venue": "Lecture notes in computer science",
+   "doi": "https://doi.org/10.1007/978-3-319-19992-4_46",
+   "cited": 595,
+   "abstract": ""
+  },
+  {
+   "title": "Automatic Segmentation of MR Brain Images With a Convolutional Neural Network",
+   "year": 2016,
+   "venue": "IEEE Transactions on Medical Imaging",
+   "doi": "https://doi.org/10.1109/tmi.2016.2548501",
+   "cited": 788,
+   "abstract": "Automatic segmentation in MR brain images is important for quantitative analysis in large-scale studies with images acquired at all ages. This paper presents a method for the automatic segmentation of MR brain images into a number of tissue classes using a convolutional neural network. To ensure that the method obtains accurate segmentation details as well as spatial consistency, the network uses multiple patch sizes and multiple convolution kernel sizes to acquire multi-scale information about each voxel. The method is not dependent on explicit features, but learns to recognise the information that is important for the classification based on training data. The method requires a single anatomical MR image only. The segmentation method is applied to five different data sets: coronal T2-weighted images of preterm infants acquired at 30 weeks postmenstrual age (PMA) and 40 weeks PMA, axial T2-weighted images of preterm infants acquired at 40 weeks PMA, axial T1-weighted images of ageing adults acquired at an average age of 70 years, and T1-weighted images of young adults acquired at an average age of 23 years. The method obtained the following average Dice coefficients over all segmented tissue classes for each data set, respectively: 0.87, 0.82, 0.84, 0.86, and 0.91. The results demonstrate that the method obtains accurate segmentations in all five sets, and hence demonstrates its robustness to differences in age and acquisition protocol."
+  },
+  {
+   "title": "Morphological classification of radio galaxies: capsule networks versus convolutional neural networks",
+   "year": 2019,
+   "venue": "Monthly Notices of the Royal Astronomical Society",
+   "doi": "https://doi.org/10.1093/mnras/stz1289",
+   "cited": 64,
+   "abstract": "Next-generation radio surveys will yield an unprecedented amount of data, warranting analysis by use of machine learning techniques. Convolutional neural networks are the deep learning technique that has proven to be the most successful in classifying image data. Capsule networks are a more recently developed technique that use capsules comprised of groups of neurons that describe properties of an image including the relative spatial locations of features. This work explores the performance of different capsule network architectures against simpler convolutional neural network architectures, in reproducing the classifications into the classes of unresolved, FRI, and FRII morphologies. We utilize images from a LOFAR survey which is the deepest, wide-area radio survey to date, revealing more complex radio-source structures compared to previous surveys, presenting further challenges for machine learning algorithms. The four- and eight-layer convolutional networks attain an average precision of 93.3 per cent and 94.3 per cent, respectively, compared to 89.7 per cent obtained with the capsule network, when training on original and augmented images. Implementing transfer learning achieves a precision of 94.4 per cent, which is within the confidence interval of the eight-layer convolutional network. The convolutional networks always outperform any variation of the capsule network, as they prove to be more robust to the presence of noise in images. The use of pooling appears to allow more freedom for the intra-class variability of radio galaxy morphologies, as well as reducing the impact of noise."
+  }
+ ]
+}
