@@ -242,7 +242,7 @@ the𝑘th sampling point. The output is
 Compared with full-channel deformable convolution,
 this design reduces dynamic-offset computation and param-
 eter redundancy by approximately 50%, enabling deploy-
-ment at all three feature scales.
+meant at all three feature scales.
 3.3. Layer-Wise Morphological Attention
 3.3.1. Morphology-specific motivation
 Steel defects are strongly anisotropic. Square receptive
@@ -564,7 +564,7 @@ surfacedefectdetection,JournalofOrdnanceEquipmentEngineering
 [6] R. Bumbálek, T. Zoubek, J. Majerník, J. D. Marcel, S. N. Umurungi,
 K. Šramhauser, F. Špalek, Detection of surface defects in metallic
 materialsusingYOLOarchitecture,ArchivesofFoundryEngineering
-20 (1) (2026) 11–18.doi:10.24425/afe.2026.020.
+20 (1) (2026) 11–18.doi:10.24425/safe.2026.020.
 [7] Y. Zhou, Z. Zhao, MPA-YOLO: Steel surface defect detection based
 on improved YOLOv8 framework, Pattern Recognition 168 (2025)
 111897.
