@@ -1,4 +1,5 @@
 """Train MSD-Net (new modules + structure + SAD-Loss) on NEU-DET."""
+
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -6,9 +7,9 @@ warnings.filterwarnings("ignore")
 from ultralytics import YOLO
 from ultralytics.utils.loss_sad import SADTrainer
 
-YAML = r"G:\deeplearning\YOLO-small\yaml\MSD-Net.yaml"        # use MSD-Net-FB.yaml for the full rebuild
+YAML = r"G:\deeplearning\YOLO-small\yaml\MSD-Net.yaml"  # use MSD-Net-FB.yaml for the full rebuild
 DATA = r"G:\deeplearning\YOLO-small\NEU-DET\NEU-DET.yaml"
-PRETRAINED = r"G:\deeplearning\YOLO-small\yolo11n.pt"          # transfers the backbone only; set None to train from scratch
+PRETRAINED = r"G:\deeplearning\YOLO-small\yolo11n.pt"  # transfers the backbone only; set None to train from scratch
 
 if __name__ == "__main__":
     model = YOLO(YAML)
