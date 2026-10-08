@@ -17,10 +17,10 @@ Motivation on NEU-DET (200x200 steel surface, 6 classes):
 """
 
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
 
-__all__ = ("DMF", "HPD", "GAF", "MBlock")
+__all__ = ("DMF", "GAF", "HPD", "MBlock")
 
 
 def _odd(k):
@@ -41,9 +41,8 @@ def _erode(x, k):
 class DMF(nn.Module):
     """Differentiable Morphology Filter.
 
-    Two-scale opening/closing produce top-hat (bright detail) and black-hat
-    (dark detail) responses.  They are concatenated with the raw feature and
-    fused by a depthwise-separable bottleneck with a residual connection.
+    Two-scale opening/closing produce top-hat (bright detail) and black-hat (dark detail) responses. They are
+    concatenated with the raw feature and fused by a depthwise-separable bottleneck with a residual connection.
     """
 
     def __init__(self, c1, c2, k=3, e=0.5):
@@ -78,8 +77,7 @@ class DMF(nn.Module):
 class HPD(nn.Module):
     """High-frequency Preserving Downsample.
 
-    Low band  : average pooling + 1x1 projection.
-    High band : (x - local mean) through a depthwise stride convolution.
+    Low band : average pooling + 1x1 projection. High band : (x - local mean) through a depthwise stride convolution.
     The two bands are combined by a learned per-pixel gate, then projected.
     """
 
@@ -114,8 +112,8 @@ class HPD(nn.Module):
 class GAF(nn.Module):
     """Gradient-Aware Fusion.
 
-    1x1 compression -> Sobel gradient-energy gate (defect edges) -> DMF
-    morphology refinement, with a residual.  Used as a neck fusion node.
+    1x1 compression -> Sobel gradient-energy gate (defect edges) -> DMF morphology refinement, with a residual. Used as
+    a neck fusion node.
     """
 
     def __init__(self, c1, c2, e=0.25, gk=7):
